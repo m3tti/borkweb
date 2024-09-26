@@ -10,7 +10,7 @@
 
 (def server (atom nil))
 
-(defn -main [& args]
+(defn start-server []
   (reset! server
           (srv/run-server
            (->
@@ -24,5 +24,11 @@
            {:port 8080
             :join? false})))
 
-(comment (-main))
+(defn -main [& args]
+  (start-server)
+  (println "You will be assimilated @ https://localhost:8080")
+  @(promise))
+
+(comment (start-server))
 (comment (@server))
+(comment (-main))
