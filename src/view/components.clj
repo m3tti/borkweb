@@ -31,6 +31,8 @@
     compile-jsx
     h/raw)])
 
+(comment (cljs-module "custom-element"))
+
 (defn cljs-resource [filename]
   [:script
    (->
@@ -91,12 +93,16 @@
               :squint-cljs/src/squint/string.js (str squint-cdn-path "/src/squint/string.js")
               :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
               :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))]
-         (cljs-module "helloworld")]
+         (cljs-module "helloworld")
+         (cljs-module "custom-element")]
         [:body
          (navbar req)
          (alert req)
          body
          [:div#cljs]
+
+         [:x-greeting {:name "test"}]
+         
          [:script {:src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                    :integrity "sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                    :crossorigin "anonymous"}]]])))
