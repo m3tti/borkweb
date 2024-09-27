@@ -1,7 +1,11 @@
 (ns database.core
   (:require
-   [pod.babashka.postgresql :as jdbc]
+   [utils.runtime :as runtime]
    [honey.sql :as sql]))
+
+(runtime/if-bb
+ (require '[pod.babashka.postgresql :as jdbc])
+ (require '[next.jdbc :as jdbc]))
 
 (defonce db (jdbc/get-connection {:dbtype "postgres"
                                   :dbname "jobstop"

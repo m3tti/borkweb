@@ -1,0 +1,12 @@
+{:paths ["src" "resources"]
+ :deps {org.clojars.askonomm/ruuter {:mvn/version "1.3.4"}
+        com.github.seancorfield/honeysql {:mvn/version "2.6.1161"}
+        com.github.seancorfield/next.jdbc {:mvn/version "1.3.939"}
+        org.postgresql/postgresql {:mvn/version "42.6.0"}
+        ring/ring {:mvn/version "1.12.1"}
+        gaka/gaka {:mvn/version "0.3.0"}
+        hiccup/hiccup {:mvn/version "2.0.0-RC3"}
+        http-kit/http-kit {:mvn/version "2.8.0"}
+        cheshire/cheshire {:mvn/version "5.13.0"}
+        ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "85cec408adbe9442a93c369b8916dbdd0bb69ae6"}
+        squint/squint {:git/url "https://github.com/squint-cljs/squint" :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}}
