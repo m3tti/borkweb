@@ -5,8 +5,9 @@
   (let [[counter setCounter] (hooks/useState 0)]
     #jsx [:<>
           [:div "Counter " counter]
-          [:button {:onClick #(setCounter (inc counter))} "+"]
-          [:button {:onClick #(setCounter (dec counter))} "-"]]))
+          [:div {:role "group" :class "btn-group"}
+           [:button {:class "btn btn-primary" :onClick #(setCounter (inc counter))} "+"]
+           [:button {:class "btn btn-primary" :onClick #(setCounter (dec counter))} "-"]]]))
 
 (defonce el (js/document.getElementById "cljs"))
 
