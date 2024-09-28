@@ -15,6 +15,7 @@ Is a small web template with as little dependencies as possible to get you of th
 
 ## Get started
 borkweb only needs babashka to get started. To run the template just do a `bb -m core` and you are good to go.
+Make sure you have a postgres database at hand find documentation for that down below. If you need a postgres db there is a docker-compose.yaml there. Start it up as always `docker-compose up -d`.
 
 ### CLJS
 borkweb provides already everything you need to get started with cljs no need for any bundler or anything else.
@@ -29,5 +30,10 @@ Routing can be done in the `routes.clj` file found in the base folder. There are
 (get path (fn [req] body))
 (post path (fn [req] body))
 ```
+
+### Database
+The initialization of the database is currently done with an init.sql which you can trigger either with `bb -m database.core/initialize-db`.
+Or by a tool of your choice. The database connection parameters are available in `database/core.cljs` just replace as you like.
+Currently postgres is used for the database backend but you can basically use any sql database that you like and which is supported by your runtime. If you want to use a diffrent db like datalevin you'll lose the registration and login functionality and have to adjust some stuff.
 
 tbd

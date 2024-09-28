@@ -62,7 +62,7 @@
                  :where (where-eq key-map)})))
 
 (defn initialize-db []
-  (execute-one! [(slurp "init.sql")]))
+  (jdbc/execute-one! db [(slurp "init.sql")]))
 
 (comment (initialize-db))
 
