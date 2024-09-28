@@ -46,7 +46,7 @@
   (let [user (s/current-user req)]
     [:nav.navbar.sticky-top.navbar-expand-lg.navbar-bg-body-tertiary
      [:div.container-fluid
-      [:a.navbar-brand {:href "/"} "Bork·web"]
+      [:a.navbar-brand.fw-bold {:href "/"} "Bork·web"]
       [:button.navbar-toggler {:type "button" :data-bs-toggle "collapse" :data-bs-target "#navbar"}
        [:span.navbar-toggler-icon]]
       [:div#navbar.collapse.navbar-collapse
@@ -80,6 +80,9 @@
    (h/html
        [:html
         [:head
+         [:meta {:charset "utf-8"}]
+         [:meta {:name "viewport"
+                 :content "width=device-width, initial-scale=1"}]
          [:link {:href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
                  :rel "stylesheet"
                  :integrity "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -93,9 +96,12 @@
               :squint-cljs/src/squint/string.js (str squint-cdn-path "/src/squint/string.js")
               :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
               :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))]
+         [:script {:src "https://unpkg.com/htmx.org@2.0.2"
+                   :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+                   :crossorigin "anonymous"}]
          (cljs-module "helloworld")
          (cljs-module "custom-element")]
-        [:body
+        [:body {:hx-boost "true" :data-bs-theme "dark"}
          (navbar req)
          (alert req)
          body
