@@ -31,14 +31,3 @@
       :method :get
       :response profile/index}]
    %))
-
-;;(c/defroutes routes
-;  (r/resources "/static" {:root ""})
-;  (c/GET "/" [] index/page)
-;  (c/GET "/register" [] register/index)
-;  (c/POST "/register" [] register/save)
-;  (c/GET "/login" [] login/index)
-;  (c/POST "/login" [] login/login)
-;  (c/GET "/logout" [] login/logout)
-;  (c/GET "/profile" [] profile/index))
-
