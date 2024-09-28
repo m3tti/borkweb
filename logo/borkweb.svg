@@ -8,6 +8,9 @@
    id="svg147"
    sodipodi:docname="borkweb.svg"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:export-filename="/home/metti/code/borkweb/logo/borkweb.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +25,7 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="0.75617284"
-     inkscape:cx="441.03673"
+     inkscape:cx="190.43265"
      inkscape:cy="380.86531"
      inkscape:window-width="1366"
      inkscape:window-height="699"
@@ -86,12 +89,14 @@
      d="M1682 951.5V968H1738V951.5H1682Z"
      fill="white"
      id="path118" />
-  <path
-     d="m 1584.5385,1672.6956 c 0,29.27 -23.729,53 -53,53 -29.271,0 -53,-23.73 -53,-53 0,-29.27 23.729,-53 53,-53 29.271,0 53,23.73 53,53 z"
-     fill="#000000"
-     id="path136" />
   <defs
      id="defs145">
+    <rect
+       x="421.8141"
+       y="403.87732"
+       width="314.14816"
+       height="232.70283"
+       id="rect13165" />
     <linearGradient
        id="paint0_linear"
        x1="1499"
@@ -110,24 +115,18 @@
   </defs>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:320.435px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.33787"
-     x="666.4823"
-     y="1760.6088"
-     id="text8443"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320.435px;line-height:1.25;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono';fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.33787"
+     x="746.00073"
+     y="1721.553"
+     id="text1411"><tspan
        sodipodi:role="line"
-       id="tspan8441"
+       id="tspan1409"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:320.435px;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold';stroke-width:3.33787"
-       x="666.4823"
-       y="1760.6088">bork</tspan></text>
+       x="746.00073"
+       y="1721.553">bork·web</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:320.435px;line-height:1.25;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.33787"
-     x="1663.0781"
-     y="1756.6055"
-     id="text13703"><tspan
-       sodipodi:role="line"
-       id="tspan13701"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:320.435px;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold';stroke-width:3.33787"
-       x="1663.0781"
-       y="1756.6055">web</tspan></text>
+     transform="matrix(3.3378685,0,0,3.3378685,0,-0.46938776)"
+     id="text13163"
+     style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect13165)" />
 </svg>
