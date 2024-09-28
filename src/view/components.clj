@@ -46,7 +46,7 @@
   (let [user (s/current-user req)]
     [:nav.navbar.sticky-top.navbar-expand-lg.navbar-bg-body-tertiary
      [:div.container-fluid
-      [:a.navbar-brand {:href "/"} "JobStop"]
+      [:a.navbar-brand {:href "/"} "Bork·web"]
       [:button.navbar-toggler {:type "button" :data-bs-toggle "collapse" :data-bs-target "#navbar"}
        [:span.navbar-toggler-icon]]
       [:div#navbar.collapse.navbar-collapse
