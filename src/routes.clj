@@ -1,33 +1,34 @@
 (ns routes
   (:require
    [ruuter.core :as ruuter]
-   [utils.response :as r]
    [view.index :as index]
    [view.login :as login]
    [view.profile :as profile]
    [view.register :as register]))
 
+(defn route [path method response-fn]
+  {:path path
+   :method method
+   :response (fn [req]
+               (let [resp (response-fn req)]
+                 (if (string? resp)
+                   {:status 200
+                    :body resp}
+                   resp)))})
+
+(defn get [path response-fn]
+  (route path :get response-fn))
+
+(defn post [path response-fn]
+  (route path :post response-fn))
+
 (def routes
   #(ruuter/route 
-    [{:path "/"
-      :method :get
-      :response index/page}
-     {:path "/register"
-      :method :get
-      :response register/index}
-     {:path "/register"
-      :method :post
-      :response register/save}
-     {:path "/login"
-      :method :get
-      :response login/index}
-     {:path "/login"
-      :method :post
-      :response login/login}
-     {:path "/logout"
-      :method :get
-      :response login/logout}
-     {:path "/profile"
-      :method :get
-      :response profile/index}]
-   %))
+    [(get "/" index/page)
+     (get "/register" register/index)
+     (post "/register" register/save)
+     (get "/login" login/index)
+     (post "/login" login/login)
+     (get "/logout" login/logout)
+     (get "/profile" profile/index)]
+    %))
