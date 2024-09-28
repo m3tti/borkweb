@@ -5,8 +5,8 @@ Is a small web template with as little dependencies as possible to get you of th
 ## Dependencies
 - [ruuter](https://github.com/askonomm/ruuter)
 - [squint](https://github.com/squint-cljs/squint)
-- [babashka-sql-pod](https://github.com/babashka/babashka-sql-pods)
-- [next.jdbc](https://github.com/seancorfield/next-jdbc)
+- [babashka-sql-pod](https://github.com/babashka/babashka-sql-pods) <- depending on runtime
+- [next.jdbc](https://github.com/seancorfield/next-jdbc) <- depending on runtime
 - [http-kit](https://github.com/http-kit/http-kit)
 - [cheshire](https://github.com/dakrone/cheshire)
 - [ring](https://github.com/ring-clojure/ring)
