@@ -22,6 +22,35 @@ borkweb provides already everything you need to get started with cljs no need fo
 Get to `resources/cljs` drop your cljs code that is squint compliant and you are good to go. borkweb allready includes some examples for preact and preact web components. There are helper functions to compile cljs code in your hiccup templates. You can find them in `view/components.clj`
 `cljs-module` to generate js module code and `cljs-resource` to create plain javascript code. there is even `->js` which can be used to trigger squint/cljs code inline.
 
+``` clojure
+;; resources/cljs/counter.cljs
+(require '["https://esm.sh/preact@10.19.2" :as react])
+(require '["https://esm.sh/preact@10.19.2/hooks" :as hooks])
+
+(defn Counter []
+  (let [[counter setCounter] (hooks/useState 0)]
+    #jsx [:<>
+          [:div "Counter " counter]
+          [:div {:role "group" :class "btn-group"}
+           [:button {:class "btn btn-primary" :onClick #(setCounter (inc counter))} "+"]
+           [:button {:class "btn btn-primary" :onClick #(setCounter (dec counter))} "-"]]]))
+
+(defonce el (js/document.getElementById "cljs"))
+
+(react/render #jsx [Counter] el)
+```
+
+``` clojure
+;; view/some_page.clj
+(require '[view.components :as c])
+
+(defn some-page [req]
+  [:h1 "My fancy component page"]
+  [:div#cljs]
+  ;; just use the filename without cljs. the function will search in the resource/cljs folder.
+  (c/cljs-module "counter"))
+```
+
 ### Routing
 Routing can be done in the `routes.clj` file found in the base folder. There are already premade helper functions to generate routes in a compojuresque style.
 
