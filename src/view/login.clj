@@ -18,21 +18,19 @@
       (c/flash-msg (r/redirect "/login") "danger" "Wrong username or password"))))
 
 (defn index [req]
-  {:status 200
-   :body 
-   (c/layout
-    req
-    [:div.container.p-4
-     [:div.row.justify-content-md-center
-      [:div
-       [:h1 "Login"]
-       [:form {:method "post" :action "/login"}
-        (c/csrf-token)
-        [:div.mb-3 
-         [:label.form-label "E-Mail"]
-         [:input.form-control {:type "email" :name "email" :placeholder "E-Mail"}]]
-        [:div.mb-3 
-         [:label.form-label "Password"]
-         [:input.form-control {:type "password" :name "password"}]]
-        [:div.mb-3
-         [:input.btn.btn-primary {:type "submit" :value "Login"}]]]]]])})
+  (c/layout
+   req
+   [:div.container.p-4
+    [:div.row.justify-content-md-center
+     [:div
+      [:h1 "Login"]
+      [:form {:method "post" :action "/login"}
+       (c/csrf-token)
+       [:div.mb-3 
+        [:label.form-label "E-Mail"]
+        [:input.form-control {:type "email" :name "email" :placeholder "E-Mail"}]]
+       [:div.mb-3 
+        [:label.form-label "Password"]
+        [:input.form-control {:type "password" :name "password"}]]
+       [:div.mb-3
+        [:input.btn.btn-primary {:type "submit" :value "Login"}]]]]]]))
