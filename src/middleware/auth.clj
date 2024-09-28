@@ -2,7 +2,7 @@
   (:require
    [utils.response :as r]
    [clojure.string :as str]
-   [database.user :as user]))
+   [utils.session :as session]))
 
 (def restricted-pages
   ["/profile"
@@ -16,7 +16,7 @@
 (defn wrap-auth [handler]
   (fn [req]
     (if (path-restricted? (:uri req))
-      (if (user/by-id (get-in req [:params :user-id]))
-        (r/redirect (str "/login?url=" (:uri req)))
-        (handler req))
+      (if (session/current-user req)
+        (handler req)
+        (r/redirect (str "/login?url=" (:uri req))))
       (handler req))))
