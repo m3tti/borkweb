@@ -1,6 +1,7 @@
 (ns routes
   (:require
    [ruuter.core :as ruuter]
+   [static :as static]
    [view.index :as index]
    [view.login :as login]
    [view.profile :as profile]
@@ -24,7 +25,8 @@
 
 (def routes
   #(ruuter/route 
-    [(get "/" index/page)
+    [(get "/static/:filename" static/serve-static)
+     (get "/" index/page)
      (get "/register" register/index)
      (post "/register" register/save)
      (get "/login" login/index)

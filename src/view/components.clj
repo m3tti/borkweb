@@ -70,11 +70,6 @@
     [:div.alert {:class (str "alert-" severity) :role "alert"}
      msg]))
 
-(defn flash-msg [res severity msg]
-  (assoc res :flash
-         {:message {:severity severity
-                    :message msg}}))
-
 (defn layout [req & body]
   (str
    (h/html

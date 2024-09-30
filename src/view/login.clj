@@ -15,7 +15,7 @@
          (get-in req [:params "password"]))
       (assoc (r/redirect "/")
              :session {:user-id (:users/id (user/by-email email))})
-      (c/flash-msg (r/redirect "/login") "danger" "Wrong username or password"))))
+      (r/flash-msg (r/redirect "/login") "danger" "Wrong username or password"))))
 
 (defn index [req]
   (c/layout

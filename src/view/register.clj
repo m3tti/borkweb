@@ -14,7 +14,7 @@
   (if (= (get-in req [:params "password1"])
          (get-in req [:params "password2"]))
     (save-user req)
-    (c/flash-msg
+    (r/flash-msg
      (r/redirect "/register")
      "danger" "Password don't match")))
 
