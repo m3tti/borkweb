@@ -1,6 +1,7 @@
 [<img src="logo/borkweb.svg" alt="Borkweb" width="425px">](https://github.com/m3tti/borkweb)
 
-Is a small web template with as little dependencies as possible to get you of the ground fast. It supports a structure for your next web app and integrates a simple user login and register form.
+Is a small web template with as little dependencies as possible to get you of the ground fast. It supports a structure for your next web app and integrates a simple user login and register form. Furthermore ClojureScript on your fingertips with squint and preact. You can write web components and plain Preact components. 
+borkweb's goal is 'start small grow big' if babashka doesn't fit your needs switch to jvm clojure. Borkweb grows with you.
 
 ## Dependencies
 - [ruuter](https://github.com/askonomm/ruuter)
