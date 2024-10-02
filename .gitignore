@@ -1,2 +1,6 @@
 .cpcache
 target
+/.nrepl-port
+/.calva/
+/.clj-kondo/
+/.lsp/
