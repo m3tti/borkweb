@@ -5,6 +5,7 @@
    [clojure.java.io :as io]
    [ring.middleware.anti-forgery :as af]
    [squint.compiler :as squint]
+   [view.style :as sty]
    [cheshire.core :as json]))
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
@@ -94,6 +95,7 @@
          [:script {:src "https://unpkg.com/htmx.org@2.0.2"
                    :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
                    :crossorigin "anonymous"}]
+         [:style (h/raw sty/*style*)]
          (cljs-module "counter")
          (cljs-module "custom-element")]
         [:body {:hx-boost "true" :data-bs-theme "dark"}
