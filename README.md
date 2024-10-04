@@ -97,6 +97,7 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 - [ ] Add base64 upload code which zips data first with [zip.js](https://gildas-lormeau.github.io/zip.js/)
 - [ ] Add Html5 Modal window
 - [ ] Add autocomplete component as webcomponent
+- [ ] Provide something like a repl for cljs/squint code. Maybe also directly in the browser to trigger functions @borkdude supported the repl option to squint which might be a good idea.
 
 ## Articles
 * [Babashka's First Web Framework](https://github.com/m3tti/m3tti.github.io/blob/master/borkweb-babashkas-first-webframework.md)
