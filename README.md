@@ -98,6 +98,7 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 - [ ] Add Html5 Modal window
 - [ ] Add autocomplete component as webcomponent
 - [ ] Provide something like a repl for cljs/squint code. Maybe also directly in the browser to trigger functions @borkdude supported the repl option to squint which might be a good idea.
+- [ ] Provide a simple production ready docker-compose config with postgress, caddy (as reverse proxy), and the babashka app. Everything easily scaleable through replicas.
 
 ## Articles
 * [Babashka's First Web Framework](https://github.com/m3tti/m3tti.github.io/blob/master/borkweb-babashkas-first-webframework.md)
