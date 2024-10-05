@@ -25,14 +25,14 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="0.75617284"
-     inkscape:cx="190.43265"
+     inkscape:cx="191.09388"
      inkscape:cy="380.86531"
      inkscape:window-width="1366"
      inkscape:window-height="699"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg147" />
+     inkscape:current-layer="text1411" />
   <path
      fill-rule="evenodd"
      clip-rule="evenodd"
@@ -113,17 +113,43 @@
          id="stop142" />
     </linearGradient>
   </defs>
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320.435px;line-height:1.25;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono';fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.33787"
-     x="746.00073"
-     y="1721.553"
-     id="text1411"><tspan
-       sodipodi:role="line"
-       id="tspan1409"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:320.435px;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold';stroke-width:3.33787"
-       x="746.00073"
-       y="1721.553">bork·web</tspan></text>
+  <g
+     aria-label="bork·web"
+     id="text1411"
+     style="font-size:320.435px;line-height:1.25;font-family:'CaskaydiaMono Nerd Font Mono';-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono';fill:#000000;stroke-width:3.33787">
+    <path
+       d="m 815.93943,1724.6822 q -11.89115,0 -23.46936,-0.9387 -11.57822,-0.7824 -23.62583,-2.1905 v -234.6936 h 42.40131 v 98.8842 h 4.38095 q 4.22449,-33.17 39.42853,-33.17 31.29248,0 48.34688,19.5578 17.21086,19.5578 17.21086,55.5441 0,46.1564 -27.38092,71.6598 -27.22446,25.3469 -77.29242,25.3469 z m -4.69388,-96.3808 v 56.3265 q 2.81633,0.1564 5.63265,0.1564 2.81632,0 5.63265,0 26.12922,0 40.3673,-14.8639 14.39454,-15.0204 14.39454,-42.2449 0,-16.8979 -7.97959,-25.9727 -7.82312,-9.2313 -22.37412,-9.2313 -35.67343,0 -35.67343,35.8299 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path839" />
+    <path
+       d="m 1027.6331,1724.6822 q -35.82993,0 -55.5442,-22.5306 -19.71426,-22.5305 -19.71426,-63.5237 0,-41.1496 19.71426,-63.5237 19.71427,-22.5306 55.5442,-22.5306 35.8298,0 55.5441,22.5306 19.7143,22.3741 19.7143,63.5237 0,40.9932 -19.7143,63.5237 -19.7143,22.5306 -55.5441,22.5306 z m 0,-40.2108 q 15.3333,0 23.6258,-11.8912 8.2925,-12.0476 8.2925,-33.9523 0,-22.0612 -8.2925,-33.9523 -8.2925,-11.8912 -23.6258,-11.8912 -15.1769,0 -23.6259,11.8912 -8.29247,11.8911 -8.29247,33.9523 0,21.9047 8.29247,33.9523 8.449,11.8912 23.6259,11.8912 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path841" />
+    <path
+       d="m 1208.6601,1650.2061 v 35.0476 h 38.8026 v 36.2993 h -116.0951 v -36.2993 h 35.0476 v -93.2516 h -28.7891 v -36.2993 h 64.7755 l 4.8503,37.3945 h 5.9456 q 2.5034,-40.5237 42.4013,-40.5237 23.6258,0 36.1428,17.3673 12.6734,17.3673 12.6734,50.068 h -42.2448 q 0,-14.7075 -5.4762,-21.1224 -5.3197,-6.415 -17.2109,-6.415 -15.4897,0 -23.1564,15.0204 -7.6666,15.0204 -7.6666,42.7142 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path843" />
+    <path
+       d="m 1331.6395,1721.553 v -234.6936 h 42.4013 v 135.4964 h 2.5034 q 18.619,0 30.5102,-6.4149 12.0476,-6.5715 18.9319,-21.1225 6.8844,-14.7074 10.0136,-39.1156 h 43.653 q -7.5102,58.9864 -35.0475,85.272 l 45.687,80.5782 h -50.2245 l -31.136,-61.6462 q -11.2653,2.6599 -24.5646,2.6599 h -10.3265 v 58.9863 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path845" />
+    <path
+       d="m 1590.8977,1638.7844 q -11.8911,0 -20.1836,-8.2925 -8.2926,-8.449 -8.2926,-20.1837 0,-11.8911 8.2926,-20.1836 8.2925,-8.2925 20.1836,-8.2925 11.8911,0 20.1837,8.2925 8.2925,8.2925 8.2925,20.1836 0,11.7347 -8.2925,20.1837 -8.2926,8.2925 -20.1837,8.2925 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path847" />
+    <path
+       d="m 1794.7682,1721.553 -16.7415,-125.0135 h -1.8775 l -16.7415,125.0135 H 1704.02 l -10.9523,-165.8502 h 41.1496 l 5.9455,126.4217 h 2.8164 l 18.9319,-126.4217 h 30.3537 l 18.932,126.4217 h 2.8163 l 10.17,-126.4217 h 40.0544 l -15.6462,165.8502 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path849" />
+    <path
+       d="m 1979.5503,1724.6822 q -43.0271,0 -66.4965,-22.2176 -23.4694,-22.3742 -23.4694,-64.1496 0,-40.6802 19.8708,-63.2108 20.0271,-22.5306 56.3264,-22.5306 35.517,0 54.9183,20.8095 19.4014,20.8095 19.4014,60.5509 0,11.2653 -0.9388,21.4354 h -105.2992 q 9.7007,29.2585 49.4421,29.2585 11.2653,0 22.2177,-1.0953 10.9523,-1.2517 22.3741,-3.2857 l 4.068,40.0544 q -15.9591,2.8163 -29.102,3.5986 -13.1428,0.7823 -23.3129,0.7823 z m -47.721,-98.7277 h 66.653 q 0,-16.7415 -8.6055,-25.6599 -8.4489,-8.9183 -23.7823,-8.9183 -14.3945,0 -23.3129,9.0748 -8.7618,8.9183 -10.9523,25.5034 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path851" />
+    <path
+       d="m 2130.2236,1724.6822 q -11.8911,0 -23.4694,-0.9387 -11.5782,-0.7824 -23.6258,-2.1905 v -234.6936 h 42.4013 v 98.8842 h 4.381 q 4.2245,-33.17 39.4285,-33.17 31.2925,0 48.3469,19.5578 17.2109,19.5578 17.2109,55.5441 0,46.1564 -27.381,71.6598 -27.2244,25.3469 -77.2924,25.3469 z m -4.6939,-96.3808 v 56.3265 q 2.8164,0.1564 5.6327,0.1564 2.8163,0 5.6326,0 26.1292,0 40.3673,-14.8639 14.3946,-15.0204 14.3946,-42.2449 0,-16.8979 -7.9796,-25.9727 -7.8231,-9.2313 -22.3741,-9.2313 -35.6735,0 -35.6735,35.8299 z"
+       style="font-weight:bold;-inkscape-font-specification:'CaskaydiaMono Nerd Font Mono Bold'"
+       id="path853" />
+  </g>
   <text
      xml:space="preserve"
      transform="matrix(3.3378685,0,0,3.3378685,0,-0.46938776)"
