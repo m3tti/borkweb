@@ -10,11 +10,29 @@
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
 
+;;
+;; Extend importmap. This enables you to load other libraries in your
+;; js files. The key is the libraries name in your app if you require it
+;;
+(defn global-importmap []
+  [:script {:type "importmap"}
+   (h/raw
+    (json/encode 
+     {:imports
+      {:squint-cljs/core.js (str squint-cdn-path "/src/squint/core.js")
+       :squint-cljs/string.js (str squint-cdn-path "/src/squint/string.js")
+       :squint-cljs/src/squint/string.js (str squint-cdn-path "/src/squint/string.js")
+       :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
+       :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))])
+
 (defn csrf-token []
   [:input {:type "hidden"
            :name "__anti-forgery-token"
            :value af/*anti-forgery-token*}])
 
+;;
+;; Helper functions to interact with the squint compile
+;;
 (defn ->js [form]
   (->>
    (squint/compile-string* (str form))
@@ -32,8 +50,6 @@
     compile-jsx
     h/raw)])
 
-(comment (cljs-module "custom-element"))
-
 (defn cljs-resource [filename]
   [:script
    (->
@@ -43,6 +59,9 @@
     ->js
     h/raw)])
 
+;;
+;; Layout templates for your page
+;; 
 (defn navbar [req]
   (let [user (s/current-user req)]
     [:nav.navbar.sticky-top.navbar-expand-lg.navbar-bg-body-tertiary
@@ -54,9 +73,11 @@
        (when (not user)
          [:ul.navbar-nav
           [:li.nav-item
-           [:a.nav-link {:href "/login"} "Login"]]
+           [:a.nav-link {:href "/login"} "Login"]]          
           [:li.nav-item
-           [:a.nav-link {:href "/register"} "Register"]]])
+           [:a.nav-link {:href "/register"} "Register"]]
+          [:li.nav-item
+           [:a.nav-link {:href "/kitchensink"} "Kitchensink"]]])
        (when user
          [:ul.navbar-nav
           [:li.nav-item
@@ -83,29 +104,15 @@
                  :rel "stylesheet"
                  :integrity "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                  :crossorigin "anonymous"}]
-         [:script {:type "importmap"}
-          (h/raw
-           (json/encode 
-            {:imports
-             {:squint-cljs/core.js (str squint-cdn-path "/src/squint/core.js")
-              :squint-cljs/string.js (str squint-cdn-path "/src/squint/string.js")
-              :squint-cljs/src/squint/string.js (str squint-cdn-path "/src/squint/string.js")
-              :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
-              :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))]
          [:script {:src "https://unpkg.com/htmx.org@2.0.2"
                    :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
                    :crossorigin "anonymous"}]
-         [:style (h/raw sty/*style*)]
-         (cljs-module "counter")
-         (cljs-module "custom-element")]
+         (global-importmap)
+         [:style (h/raw sty/*style*)]]
         [:body {:hx-boost "true" :data-bs-theme "dark"}
          (navbar req)
          (alert req)
-         body
-         [:div.container
-          [:h3.fw-bold "CLJS Components"]
-          [:div#cljs.mb-3]
-          [:x-greeting {:name "test"}]]        
+         body                 
          [:script {:src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                    :integrity "sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                    :crossorigin "anonymous"}]]])))

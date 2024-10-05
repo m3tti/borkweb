@@ -17,6 +17,9 @@
              :session {:user-id (:users/id (user/by-email email))})
       (r/flash-msg (r/redirect "/login") "danger" "Wrong username or password"))))
 
+;;
+;; Login form. Adjust to your needs
+;;
 (defn index [req]
   (c/layout
    req

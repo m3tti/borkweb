@@ -18,6 +18,9 @@
      (r/redirect "/register")
      "danger" "Password don't match")))
 
+;;
+;; Register form. Adjust to your needs
+;; 
 (defn index [req]
   (c/layout
    req

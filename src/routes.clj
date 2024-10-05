@@ -3,6 +3,7 @@
    [ruuter.core :as ruuter]
    [static :as static]
    [view.index :as index]
+   [view.kitchensink :as sink]
    [view.login :as login]
    [view.profile :as profile]
    [view.register :as register]))
@@ -23,10 +24,23 @@
 (defn post [path response-fn]
   (route path :post response-fn))
 
+(defn put [path response-fn]
+  (route path :put response-fn))
+
+(defn delete [path response-fn]
+  (route path :delete response-fn))
+
+(defn option [path response-fn]
+  (route path :option response-fn))
+
+;;
+;; Extend your routes in here!!!
+;;
 (def routes
   #(ruuter/route 
     [(get "/static/:filename" static/serve-static)
      (get "/" index/page)
+     (get "/kitchensink" sink/index)
      (get "/register" register/index)
      (post "/register" register/save)
      (get "/login" login/index)

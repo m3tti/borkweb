@@ -25,10 +25,3 @@
     (if user 
       (enc/password= (:users/password user) password)
       false)))
-
-(comment (correct-password? "hans@wursde" "test"))
-(comment (insert {:email "hans@wurst.de" :password "test"}))
-(comment (all))
-(comment (by-id 1))
-(comment (by-email "hans@wurst.de"))
-(comment (delete! 2))

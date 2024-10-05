@@ -29,6 +29,8 @@
   (println "You will be assimilated @ https://localhost:8080")
   @(promise))
 
+;;
+;; Repl functions. To startup and stop the system
+;;
 (comment (start-server))
 (comment (@server))
-(comment (-main))

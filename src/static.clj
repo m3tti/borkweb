@@ -115,8 +115,9 @@
    (let [mime-types (merge default-mime-types mime-types)]
      (mime-types (filename-ext filename)))))
 
-(defn serve-static [req]
-  (prn (:uri req))
+(defn serve-static
+  "Actual serving function that is used in the router"
+  [req]
   (let [path (str/replace-first (:uri req) "/static/" "")]
     {:headers {"Content-Type" (ext-mime-type (fs/file-name path))}
      :body ((memoize slurp) (io/resource path))}))

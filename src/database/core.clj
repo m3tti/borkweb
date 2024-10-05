@@ -8,7 +8,7 @@
  (require '[next.jdbc :as jdbc]))
 
 (defonce db (jdbc/get-connection {:dbtype "postgres"
-                                  :dbname "jobstop"
+                                  :dbname "staryou"
                                   :user "postgres"
                                   :password "test1234"
                                   :port 15432}))
@@ -61,6 +61,11 @@
                  :from table
                  :where (where-eq key-map)})))
 
+;;
+;; The initialization function for your database system.
+;; You can even directly call the commented function to setup
+;; your system in development.
+;;
 (defn initialize-db []
   (jdbc/execute-one! db [(slurp "init.sql")]))
 
