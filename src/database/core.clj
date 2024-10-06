@@ -1,23 +1,49 @@
 (ns database.core
   (:require
    [utils.runtime :as runtime]
-   [honey.sql :as sql]))
+   [honey.sql :as sql])
+  (:import
+   (java.util Locale)))
+
+;;
+;; Environment decides wether to use hqsl or postgres
+;; only useful for babashka ;)
+;; For the jvm version it is sufficient to change the jdbc driver in `deps.edn`
+;;
+(def env "dev")
 
 (runtime/if-bb
- (require '[pod.babashka.postgresql :as jdbc])
+ (if (= env "prod")
+   (require '[pod.babashka.postgresql :as jdbc])
+   (require '[pod.babashka.hsqldb :as jdbc]))
  (require '[next.jdbc :as jdbc]))
 
-(defonce db (jdbc/get-connection {:dbtype "postgres"
-                                  :dbname "staryou"
-                                  :user "postgres"
-                                  :password "test1234"
-                                  :port 15432}))
+(def db-opts
+  (if (= env "prod")
+    {:dbtype "postgres"
+     :dbname "changeme"
+     :user "postgres"
+     :password "test1234"
+     :port 15432}
+    {:dbtype "hsqldb"
+     :dbname "./changeme"}))
+
+(defonce db
+  (jdbc/get-connection db-opts))
+
+(defn- lower-case
+  "Converts a string to lower case in the US locale to avoid problems in
+  locales where the lower case version of a character is not a valid SQL
+  entity name (e.g., Turkish)."
+  [^String s]
+  (.toLowerCase s Locale/US))
 
 (defn execute!
   ([sql]
    (execute! db sql))
   ([tx sql]
-   (jdbc/execute! tx (sql/format sql))))
+   (jdbc/execute! tx (sql/format sql) {:qualifier-fn lower-case
+                                       :label-fn lower-case})))
 
 (defn execute-one!
   ([sql]
@@ -70,6 +96,3 @@
   (jdbc/execute-one! db [(slurp "init.sql")]))
 
 (comment (initialize-db))
-
-(defn version []
-  (jdbc/execute-one! db ["select version()"]))

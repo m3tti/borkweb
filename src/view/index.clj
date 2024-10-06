@@ -9,8 +9,7 @@
    req
    [:div.container
     [:h1 "My Service"]
-    [:table
-     [:tr [:td "DB Version"] [:td (:version (db/version))]]
+    [:table     
      [:tr [:td "User"] [:td (get (user/by-id
                                   (Integer.
                                    (get-in req [:session :user-id] -1)))
