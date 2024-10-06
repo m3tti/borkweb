@@ -25,5 +25,3 @@
     (if user 
       (enc/password= (:users/password user) password)
       false)))
-
-(all)
