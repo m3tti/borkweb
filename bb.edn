@@ -6,7 +6,7 @@
         ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "85cec408adbe9442a93c369b8916dbdd0bb69ae6"}
         squint/squint {:git/url "https://github.com/squint-cljs/squint" :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}
  :pods {;; Production class database
-        ;;org.babashka/postgresql {:version "0.1.0"}
+        org.babashka/postgresql {:version "0.1.0"}
         
         ;; Development Database
         org.babashka/hsqldb {:version "0.1.0"}

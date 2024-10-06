@@ -1,6 +1,7 @@
 (ns database.core
   (:require
    [utils.runtime :as runtime]
+   [clojure.string :as str]
    [honey.sql :as sql])
   (:import
    (java.util Locale)))
@@ -31,25 +32,26 @@
 (defonce db
   (jdbc/get-connection db-opts))
 
-(defn- lower-case
-  "Converts a string to lower case in the US locale to avoid problems in
-  locales where the lower case version of a character is not a valid SQL
-  entity name (e.g., Turkish)."
-  [^String s]
-  (.toLowerCase s Locale/US))
+(defn to-lower-case-keys [arr]
+  (into {}
+        (for [[k v] arr]
+          (hash-map
+           (keyword (str/lower-case (str (namespace k) "/" (name k))))
+           v))))
 
 (defn execute!
   ([sql]
    (execute! db sql))
   ([tx sql]
-   (jdbc/execute! tx (sql/format sql) {:qualifier-fn lower-case
-                                       :label-fn lower-case})))
+   (->> (jdbc/execute! tx (sql/format sql))
+       (map to-lower-case-keys))))
 
 (defn execute-one!
   ([sql]
    (execute-one! db sql))
   ([tx sql]
-   (jdbc/execute-one! tx (sql/format sql))))
+   (-> (jdbc/execute-one! tx (sql/format sql))
+       to-lower-case-keys)))
 
 (defn insert!
   ([table key-map]
