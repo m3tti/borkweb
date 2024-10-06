@@ -2,7 +2,10 @@
  :deps {org.clojars.askonomm/ruuter {:mvn/version "1.3.4"}
         com.github.seancorfield/honeysql {:mvn/version "2.6.1161"}
         com.github.seancorfield/next.jdbc {:mvn/version "1.3.939"}
+        ;; Production grade database
         org.postgresql/postgresql {:mvn/version "42.6.0"}
+        ;; Development database
+        org.hsqldb/hsqldb {:mvn/version "2.7.3"}
         ring/ring {:mvn/version "1.12.1"}
         gaka/gaka {:mvn/version "0.3.0"}
         hiccup/hiccup {:mvn/version "2.0.0-RC3"}
