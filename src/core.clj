@@ -6,9 +6,14 @@
    [ring.middleware.session :as s]
    [ring.middleware.params :as p]
    [ring.middleware.flash :as f]
+   [taoensso.timbre :as log]
+   [taoensso.timbre.appenders.core :as appenders]
    [org.httpkit.server :as srv]))
 
 (def server (atom nil))
+
+(log/merge-config!
+ {:appenders {:spit (appenders/spit-appender {:fname "./application.log"})}})
 
 (defn start-server []
   (reset! server
