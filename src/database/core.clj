@@ -6,28 +6,24 @@
   (:import
    (java.util Locale)))
 
-;;
-;; Environment decides wether to use hqsl or postgres
-;; only useful for babashka ;)
-;; For the jvm version it is sufficient to change the jdbc driver in `deps.edn`
-;;
-(def env "dev")
-
 (runtime/if-bb
- (if (= env "prod")
-   (require '[pod.babashka.postgresql :as jdbc])
-   (require '[pod.babashka.hsqldb :as jdbc]))
+ ;; if you want postgres
+ ;;(require '[pod.babashka.postgresql :as jdbc])
+ (require '[pod.babashka.hsqldb :as jdbc])
  (require '[next.jdbc :as jdbc]))
 
+;; Postgress
+;;(def db-opts
+;;  {:dbtype "postgres"
+;;   :dbname "jobstop"
+;;   :user "postgres"
+;;   :password "test1234"
+;;   :port 15432}
+
+;; Hsql
 (def db-opts
-  (if (= env "prod")
-    {:dbtype "postgres"
-     :dbname "changeme"
-     :user "postgres"
-     :password "test1234"
-     :port 15432}
-    {:dbtype "hsqldb"
-     :dbname "./changeme"}))
+  {:dbtype "hsqldb"
+   :dbname "./changeme"})
 
 (defonce db
   (jdbc/get-connection db-opts))
