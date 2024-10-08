@@ -33,12 +33,23 @@
 (defn option [path response-fn]
   (route path :option response-fn))
 
+(defn pwa [req]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (json/encode
+          {:name "Borkweb"
+           :icons
+           [{:src "/static/img/icon.png"
+             :type "image/png"
+             :sizes "512x512"}]})})
+
 ;;
 ;; Extend your routes in here!!!
 ;;
 (def routes
   #(ruuter/route 
-    [(get "/static/:filename" static/serve-static)
+    [(get "/manifest.json" pwa)
+     (get "/static/:filename" static/serve-static)
      (get "/" index/page)
      (get "/kitchensink" sink/index)
      (get "/register" register/index)
