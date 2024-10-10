@@ -8,7 +8,7 @@
                (user/by-id
                 (Integer.
                  (get-in req [:session :user-id] -1)))
-               (catch Exception _ {}))]
+               (catch Exception _ nil))]
     (c/layout
      req
      [:div.container

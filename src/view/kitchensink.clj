@@ -16,10 +16,6 @@
       [:div#cljs.mb-3]]
      [:div.col
       [:h3.fw-bold "Web Component"]
-      [:x-greeting {:name "test"}]]
-     [:div.col
-      [:h3.fw-bold "Drag File"]
-      [:div#upload]]]
+      [:x-greeting {:name "test"}]]]
     (c/cljs-module "counter")
-    (c/cljs-module "custom-element")
-    (c/cljs-module "drop-area")]))
+    (c/cljs-module "custom-element")]))

@@ -7,4 +7,4 @@
   [req]
   (try
     (user/by-id (get-in req [:session :user-id] -1))
-    (catch Exception _ {})))
+    (catch Exception _ nil)))
