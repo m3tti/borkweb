@@ -2,7 +2,7 @@
   (:require
    [ruuter.core :as ruuter]
    [static :as static]
-   [cheshire.core :as json]
+   [view.pwa :as pwa]
    [view.index :as index]
    [view.kitchensink :as sink]
    [view.login :as login]
@@ -34,22 +34,13 @@
 (defn option [path response-fn]
   (route path :option response-fn))
 
-(defn pwa [req]
-  {:status 200
-   :headers {"Content-Type" "application/json"}
-   :body (json/encode
-          {:name "Borkweb"
-           :icons
-           [{:src "/static/img/icon.png"
-             :type "image/png"
-             :sizes "512x512"}]})})
-
 ;;
 ;; Extend your routes in here!!!
 ;;
 (def routes
   #(ruuter/route 
-    [(get "/manifest.json" pwa)
+    [(get "/manifest.json" pwa/manifest)
+     (get "/sw.js" pwa/sw)
      (get "/static/:filename" static/serve-static)
      (get "/" index/page)
      (get "/kitchensink" sink/index)

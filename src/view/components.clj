@@ -59,6 +59,13 @@
     ->js
     h/raw)])
 
+(defn cljs->inline [filename]
+  (->
+   (str "cljs/" filename ".cljs")
+   io/resource
+   slurp
+   ->js))
+
 ;;
 ;; Layout templates for your page
 ;; 
@@ -109,8 +116,9 @@
                    :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
                    :crossorigin "anonymous"}]
          (global-importmap)
+         (cljs-module "register-sw")
          [:style (h/raw sty/*style*)]]
-        [:body {:hx-boost "true" :data-bs-theme "dark"}
+        [:body {:data-bs-theme "dark"}
          (navbar req)
          (alert req)
          body                 

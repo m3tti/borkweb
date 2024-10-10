@@ -1,0 +1,5 @@
+[{:create-table :users
+  :with-columns
+  [[:id :int :identity :primary :key]
+   [:email [:varchar 255] [:not nil]]
+   [:password [:varchar 255] [:not nil]]]}]

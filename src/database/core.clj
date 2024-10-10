@@ -2,6 +2,7 @@
   (:require
    [utils.runtime :as runtime]
    [clojure.string :as str]
+   [clojure.edn :as edn]
    [honey.sql :as sql])
   (:import
    (java.util Locale)))
@@ -91,6 +92,8 @@
 ;; your system in development.
 ;;
 (defn initialize-db []
-  (jdbc/execute-one! db [(slurp "init.sql")]))
+  (jdbc/with-transaction [tx db]
+    (for [q (edn/read-string (slurp "initsql.edn"))]
+      (jdbc/execute-one! tx (sql/format q)))))
 
 (comment (initialize-db))
