@@ -92,6 +92,7 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 ```
 
 ## Roadmap
+- [ ] add simple [pwa](https://web.dev/explore/progressive-web-apps) functinality to make webapps based on borkweb installable
 - [ ] Exchange data with frontend components without an api (inline json?)
 - [ ] Add FileUpload Drop Area Component
 - [ ] Add base64 upload code which zips data first with [zip.js](https://gildas-lormeau.github.io/zip.js/)
