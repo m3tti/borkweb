@@ -1,7 +1,8 @@
 (ns view.register
   (:require
    [database.user :as user]
-   [view.components :as c]
+   [view.layout :as l]
+   [view.core :as c]
    [utils.response :as r]))
 
 (defn save-user [req]
@@ -22,7 +23,7 @@
 ;; Register form. Adjust to your needs
 ;; 
 (defn index [req]
-  (c/layout
+  (l/layout
    req
    [:div.container.p-4
     [:div.row.justify-content-md-center

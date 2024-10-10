@@ -1,12 +1,11 @@
-(ns view.components
+(ns view.layout
   (:require
+   [cheshire.core :as json]
    [hiccup2.core :as h]
    [utils.session :as s]
-   [clojure.java.io :as io]
-   [ring.middleware.anti-forgery :as af]
-   [squint.compiler :as squint]
    [view.style :as sty]
-   [cheshire.core :as json]))
+   [view.core :as c]))
+
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
 
@@ -25,50 +24,7 @@
        :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
        :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))])
 
-(defn csrf-token []
-  [:input {:type "hidden"
-           :name "__anti-forgery-token"
-           :value af/*anti-forgery-token*}])
 
-;;
-;; Helper functions to interact with the squint compile
-;;
-(defn ->js [form]
-  (->>
-   (squint/compile-string* (str form))
-   :body))
-
-(defn compile-jsx [src]
-  (squint/compile-string src {:jsx-runtime {:import-source "https://esm.sh/preact@10.19.2"}}))
-
-(defn cljs-module [filename]
-  [:script {:type "module"}
-   (->
-    (str "cljs/" filename ".cljs")
-    io/resource
-    slurp
-    compile-jsx
-    h/raw)])
-
-(defn cljs-resource [filename]
-  [:script
-   (->
-    (str "cljs/" filename ".cljs")
-    io/resource
-    slurp
-    ->js
-    h/raw)])
-
-(defn cljs->inline [filename]
-  (->
-   (str "cljs/" filename ".cljs")
-   io/resource
-   slurp
-   ->js))
-
-;;
-;; Layout templates for your page
-;; 
 (defn navbar [req]
   (let [user (s/current-user req)]
     [:nav.navbar.sticky-top.navbar-expand-lg.navbar-bg-body-tertiary
@@ -116,7 +72,7 @@
                    :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
                    :crossorigin "anonymous"}]
          (global-importmap)
-         (cljs-module "register-sw")
+         (c/cljs-module "register-sw")
          [:style (h/raw sty/*style*)]]
         [:body {:data-bs-theme "dark"}
          (navbar req)

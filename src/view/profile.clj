@@ -1,8 +1,8 @@
 (ns view.profile
   (:require
-   [view.components :as c]))
+   [view.layout :as l]))
 
 (defn index [req]
-  (c/layout
+  (l/layout
    req
    [:h1 "Profile"]))

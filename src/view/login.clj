@@ -1,7 +1,8 @@
 (ns view.login
   (:require
    [utils.response :as r]
-   [view.components :as c]
+   [view.core :as c]
+   [view.layout :as l]
    [database.user :as user]))
 
 (defn logout [req]
@@ -21,7 +22,7 @@
 ;; Login form. Adjust to your needs
 ;;
 (defn index [req]
-  (c/layout
+  (l/layout
    req
    [:div.container.p-4
     [:div.row.justify-content-md-center
