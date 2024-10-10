@@ -2,6 +2,7 @@
   (:require
    [ruuter.core :as ruuter]
    [static :as static]
+   [cheshire.core :as json]
    [view.index :as index]
    [view.kitchensink :as sink]
    [view.login :as login]
