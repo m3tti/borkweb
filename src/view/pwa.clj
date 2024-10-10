@@ -1,6 +1,6 @@
 (ns view.pwa
   (:require
-   [view.components :as c]
+   [view.core :as c]
    [cheshire.core :as json]))
 
 (defn sw [req]

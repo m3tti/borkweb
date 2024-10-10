@@ -1,6 +1,6 @@
 (ns view.index
   (:require
-   [view.components :as c]
+   [view.layout :as l]
    [database.user :as user]))
 
 (defn page [req]
@@ -9,7 +9,7 @@
                 (Integer.
                  (get-in req [:session :user-id] -1)))
                (catch Exception _ nil))]
-    (c/layout
+    (l/layout
      req
      [:div.container
       [:h1 "My Service"]

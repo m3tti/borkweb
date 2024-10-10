@@ -1,13 +1,14 @@
 (ns view.kitchensink
   (:require
-   [view.components :as c]))
+   [view.core :as c]
+   [view.layout :as l]))
 
 ;;
 ;; Here is the example page of all the included components
 ;; for your webapp. Like FileDropAreas, Autocompletes or Modals
 ;;
 (defn index [req]
-  (c/layout
+  (l/layout
    req
    [:div
     [:div.container.row
