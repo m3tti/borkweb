@@ -24,7 +24,9 @@
 ;; Hsql
 (def db-opts
   {:dbtype "hsqldb"
-   :dbname "./changeme"})
+   :dbname "./changeme"
+   ;; set postgres dialect
+   :sql.syntax_pgs true})
 
 (defonce db
   (jdbc/get-connection db-opts))
