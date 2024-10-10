@@ -5,4 +5,6 @@
 (defn current-user 
   "Get the current user id from the session and return the user object from the database"
   [req]
-  (user/by-id (get-in req [:session :user-id] -1)))
+  (try
+    (user/by-id (get-in req [:session :user-id] -1))
+    (catch Exception _ {})))
