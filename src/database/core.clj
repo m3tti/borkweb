@@ -31,12 +31,11 @@
 (defonce db
   (jdbc/get-connection db-opts))
 
-(defn to-lower-case-keys [arr]
-  (into {}
-        (for [[k v] arr]
-          (hash-map
-           (keyword (str/lower-case (str (namespace k) "/" (name k))))
-           v))))
+(defn to-lower-case-keys [map]
+  (update-keys map #(->
+                     (str (namespace %) "/" (name %))
+                     str/lower-case
+                     keyword)))
 
 (defn execute!
   ([sql]
