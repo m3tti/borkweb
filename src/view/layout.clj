@@ -3,6 +3,7 @@
    [cheshire.core :as json]
    [hiccup2.core :as h]
    [utils.session :as s]
+   [utils.htmc :as hc]
    [view.style :as sty]
    [view.core :as c]))
 
@@ -24,7 +25,6 @@
        :squint-cljs/src/squint/set.js (str squint-cdn-path "/src/squint/set.js")
        :squint-cljs/src/squint/html.js (str squint-cdn-path "/src/squint/html.js")}}))])
 
-
 (defn navbar [req]
   (let [user (s/current-user req)]
     [:nav.navbar.sticky-top.navbar-expand-lg.navbar-bg-body-tertiary
@@ -36,7 +36,7 @@
        (when (not user)
          [:ul.navbar-nav
           [:li.nav-item
-           [:a.nav-link {:href "/login"} "Login"]]          
+           [:a.nav-link {:href "/login#body"} "Login"]]          
           [:li.nav-item
            [:a.nav-link {:href "/register"} "Register"]]
           [:li.nav-item
@@ -68,13 +68,11 @@
                  :rel "stylesheet"
                  :integrity "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                  :crossorigin "anonymous"}]
-         [:script {:src "https://unpkg.com/htmx.org@2.0.2"
-                   :integrity "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
-                   :crossorigin "anonymous"}]
          (global-importmap)
          (c/cljs-module "register-sw")
          [:style (h/raw sty/*style*)]]
-        [:body {:data-bs-theme "dark"}
+        [:body {:data-bs-theme "dark" :id "body"}
+         (hc/htmc)
          (navbar req)
          (alert req)
          body                 
