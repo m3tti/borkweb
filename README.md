@@ -36,17 +36,15 @@ Borkweb is an open-source project, and I welcome contributions from anyone who i
 ### Frontend third party
 - [preact](preactjs.com)
 - [bootstrap.css](https://getbootstrap.com)
-- [htmx](https://htmx.org/)
 
 ## Get started
-borkweb only needs babashka to get started. To run the template just do a `bb -m core` and you are good to go.
-Make sure you have a postgres database at hand find documentation for that down below. If you need a postgres db there is a docker-compose.yaml there. Start it up as always `docker-compose up -d`.
+borkweb only needs babashka to get started. To run the template just do a `bb -m core` and you are good to go. If you want to have the login and register code up and running you should consider to create a database. Borkweb comes with [HSQLDB](https://hsqldb.org/) by default. So there is no need to have a real database at hand. It is recommended for production workloads to use Postgres or other RDBMS systems. The HSQLDB is set to support the Postgres dialect to make it seamless to switch between development and production without the need for a RDBMS system on your dev host.
 
 ### Everything starts with a Database
-The initialization of the database is currently done with an init.sql which you can trigger either with `bb -m database.core/initialize-db`.
-Or by a tool of your choice. The database connection parameters are available in `database/core.cljs` just replace as you like.
-Currently postgres is used for the database backend but you can basically use any sql database that you like and which is supported by your runtime. If you want to use a diffrent db like datalevin you'll lose the registration and login functionality and have to adjust some stuff.
-
+The initialization of the database is currently done with an `initsql.edn` file which you can trigger with `bb -m database.core/initialize-db`.
+The database connection parameters are available in `database/core.cljs` just replace as you like.
+Currently hsqldb and postgres are used for the database backend but you can basically use any sql database that you like and which is supported by your runtime. If you want to use a diffrent db like datalevin you'll lose the registration and login functionality and have to adjust some stuff.
+The `initsql.edn` is basically [honeysql](https://github.com/seancorfield/honeysql). You can lookup all special keywords and such at the [documentation](https://cljdoc.org/d/com.github.seancorfield/honeysql/2.6.1196/doc/readme).
 
 ### Routing
 Routing can be done in the `routes.clj` file found in the base folder. There are already premade helper functions to generate routes in a compojuresque style.
@@ -55,6 +53,9 @@ Routing can be done in the `routes.clj` file found in the base folder. There are
 (route path method (fn [req] body))
 (get path (fn [req] body))
 (post path (fn [req] body))
+(option path (fn [req] body))
+(put path (fn [req] body))
+(delete path (fn [req] body))
 ```
 
 ### CLJS
@@ -92,7 +93,7 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 ```
 
 ## Roadmap
-- [ ] add simple [pwa](https://web.dev/explore/progressive-web-apps) functinality to make webapps based on borkweb installable
+- [x] add simple [pwa](https://web.dev/explore/progressive-web-apps) functinality to make webapps based on borkweb installable
 - [ ] Exchange data with frontend components without an api (inline json?)
 - [ ] Add FileUpload Drop Area Component
 - [ ] Add base64 upload code which zips data first with [zip.js](https://gildas-lormeau.github.io/zip.js/)
@@ -107,3 +108,4 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 * [Babashka's First Web Framework](https://github.com/m3tti/m3tti.github.io/blob/master/borkweb-babashkas-first-webframework.md)
 * [Building a Blog in Borkweb](https://github.com/m3tti/m3tti.github.io/blob/master/on-building-a-blog-in-borkweb.md)
 * [My Journey to Creating Borkweb](https://github.com/m3tti/m3tti.github.io/blob/master/my-journey-to-creating-borkweb.md)
+* [Creating Installable Web Apps](https://borkweb.org/blog/2024-10-10-creating-installable-web-apps.md)
