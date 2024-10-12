@@ -36,7 +36,7 @@
        (when (not user)
          [:ul.navbar-nav
           [:li.nav-item
-           [:a.nav-link {:href "/login#body"} "Login"]]          
+           [:a.nav-link {:href "/login"} "Login"]]          
           [:li.nav-item
            [:a.nav-link {:href "/register"} "Register"]]
           [:li.nav-item
