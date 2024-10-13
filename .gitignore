@@ -8,3 +8,4 @@ target
 /changeme.log
 /changeme.properties
 /changeme.script
+/.direnv/
