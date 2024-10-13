@@ -1,5 +1,6 @@
 (ns core
   (:require
+   [babashka.cli :as cli]
    [routes :as ro]
    [middleware.auth :as auth]
    [ring.middleware.anti-forgery :as af]
@@ -12,10 +13,18 @@
 
 (def server (atom nil))
 
+(def cli-options-spec {:help {:alias :h}
+                       :port {:coerce :int
+                              :default 8080
+                              :alias :p}})
+
+(defn show-help []
+  (println (cli/format-opts {:spec cli-options-spec})))
+
 (log/merge-config!
  {:appenders {:spit (appenders/spit-appender {:fname "./application.log"})}})
 
-(defn start-server []
+(defn start-server [port]
   (reset! server
           (srv/run-server
            (->
@@ -26,13 +35,17 @@
             f/wrap-flash
             s/wrap-session
             p/wrap-params)
-           {:port 8080
+           {:port port
             :join? false})))
 
 (defn -main [& args]
-  (start-server)
-  (println "You will be assimilated @ https://localhost:8080")
-  @(promise))
+  (let [cli-options (cli/parse-opts args {:spec cli-options-spec})
+        {:keys [port help]} cli-options]
+    (if help
+      (show-help)
+      (do (start-server port)
+          (println (str "You will be assimilated @ https://localhost:" port))
+          @(promise)))))
 
 ;;
 ;; Repl functions. To startup and stop the system
