@@ -12,5 +12,6 @@
         http-kit/http-kit {:mvn/version "2.8.0"}
         cheshire/cheshire {:mvn/version "5.13.0"}
         com.taoensso/timbre {:mvn/version "6.5.0"}
+        org.babashka/cli {:mvn/version "0.8.60"}
         ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "85cec408adbe9442a93c369b8916dbdd0bb69ae6"}
         squint/squint {:git/url "https://github.com/squint-cljs/squint" :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}}
