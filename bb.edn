@@ -10,4 +10,5 @@
         
         ;; Development Database
         org.babashka/hsqldb {:version "0.1.0"}
+        tzzh/mail {:version "0.0.3"}
         }}

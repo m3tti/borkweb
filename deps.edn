@@ -6,6 +6,7 @@
         org.postgresql/postgresql {:mvn/version "42.6.0"}
         ;; Development database
         org.hsqldb/hsqldb {:mvn/version "2.7.3"}
+        com.draines/postal {:mvn/version "2.0.5"}
         ring/ring {:mvn/version "1.12.1"}
         gaka/gaka {:mvn/version "0.3.0"}
         hiccup/hiccup {:mvn/version "2.0.0-RC3"}
