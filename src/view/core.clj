@@ -22,22 +22,26 @@
   (squint/compile-string src {:jsx-runtime {:import-source "https://esm.sh/preact@10.19.2"}}))
 
 (defn cljs-module [filename]
-  [:script {:type "module"}
-   (->
-    (str "cljs/" filename ".cljs")
-    io/resource
-    slurp
-    compile-jsx
-    h/raw)])
+  (let [full-filename (str "cljs/" filename ".cljs")]
+    [:script {:type "module"}
+     (->
+      full-filename
+      io/resource
+      slurp
+      compile-jsx
+      (str "// corresponding cljs: /static/" full-filename)
+      h/raw)]))
 
 (defn cljs-resource [filename]
-  [:script
-   (->
-    (str "cljs/" filename ".cljs")
-    io/resource
-    slurp
-    ->js
-    h/raw)])
+  (let [full-filename (str "cljs/" filename ".cljs")]
+    [:script
+     (->
+      full-filename
+      io/resource
+      slurp
+      ->js
+      (str "// corresponding cljs: /static/" full-filename)
+      h/raw)]))
 
 (defn cljs->inline [filename]
   (->
