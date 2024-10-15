@@ -1,5 +1,6 @@
 (ns utils.mail
   (:require
+   [clojure.set :as s]
    [utils.runtime :as runtime]))
 
 (runtime/if-bb
@@ -7,8 +8,8 @@
  (require '[postal.core :as p]))
 
 (def settings
-  {:host "smtp.gmail.com"
-   :port 587
+  {:host "localhost"
+   :port 1025
    :username "kylian.mbappe@gmail.com"
    :password "kylian123"})
 
@@ -17,14 +18,12 @@
 ;; :to ["somebody@somehwere.com"]
 ;; :cc ["somebodyelse@somehwere.com"]
 ;; :text "aaa" ;; for text body
-;; :html "<b> kajfhajkfhakjs </b>" ;; for html body
+;; :html "<b> kajfhajkfhakjs </b>" ;; for html body <- not supported yet
 ;; :attachments ["./do-everything.clj"] ;; paths to the files to attch
 ;;}
 (defn send-mail [& {:keys []
                     :as mail}]
   (runtime/if-bb
    (m/send-mail
-    (into {}
-          settings
-          mail))
-   (m/send-message settings mailq)))
+    (merge settings mail))
+   (p/send-message settings (s/rename-keys mail {:text :body}))))
