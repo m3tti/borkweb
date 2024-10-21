@@ -3,7 +3,7 @@
         com.github.seancorfield/honeysql {:mvn/version "2.6.1161"}
         ring/ring {:mvn/version "1.12.1"}
         gaka/gaka {:mvn/version "0.3.0"}
-        ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "85cec408adbe9442a93c369b8916dbdd0bb69ae6"}
+        ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "4e226df604dca13d5c93be4d4900367a64f5963e"}
         squint/squint {:git/url "https://github.com/squint-cljs/squint" :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}
  :pods {;; Production class database
         org.babashka/postgresql {:version "0.1.0"}
