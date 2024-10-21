@@ -10,6 +10,16 @@
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
 
+(defn form-input [& {:keys [label type name value required]
+                     :or {required false}}]
+  (if (= type "textarea")
+    [:div.mb-3
+     [:label.form-label label]
+     [:textarea.form-control {:type type :name name :required required} value]]
+    [:div.mb-3
+     [:label.form-label label]
+     [:input.form-control {:type type :value value :name name :required required}]]))
+
 ;;
 ;; Extend importmap. This enables you to load other libraries in your
 ;; js files. The key is the libraries name in your app if you require it
