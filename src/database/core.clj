@@ -93,7 +93,7 @@
                  :where (where-eq key-map)})))
 
 (defn item-count [table]
-  (:count (db/execute-one! {:select [[:%count.*]] :from table})))
+  (:count (execute-one! {:select [[:%count.*]] :from table})))
 
 ;;
 ;; The initialization function for your database system.
