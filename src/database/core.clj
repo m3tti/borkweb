@@ -102,7 +102,8 @@
 ;;
 (defn initialize-db []
   (jdbc/with-transaction [tx db]
-    (for [q (edn/read-string (slurp "initsql.edn"))]
-      (jdbc/execute-one! tx (sql/format q)))))
+    (dorun 
+     (for [q (edn/read-string (slurp "initsql.edn"))]
+       (jdbc/execute-one! tx (sql/format q))))))
 
 (comment (initialize-db))
