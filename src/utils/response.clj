@@ -1,4 +1,6 @@
-(ns utils.response)
+(ns utils.response
+  (:require
+   [clojure.string :as str]))
 
 (defn redirect
   "Creates redirection response for a given url"
