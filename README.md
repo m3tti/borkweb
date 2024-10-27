@@ -1,5 +1,8 @@
 [<img src="logo/borkweb.svg" alt="Borkweb" width="425px">](https://github.com/m3tti/borkweb)
 
+[![Slack](https://img.shields.io/badge/slack-borkweb-orange.svg?logo=slack)](https://clojurians.slack.com/app_redirect?channel=borkweb)
+[![Join Slack](https://img.shields.io/badge/slack-join_clojurians-orange.svg?logo=slack)](http://clojurians.net)
+
 # Borkweb: A Simpler Approach to modern Web Development
 Borkweb is an effort to create a full-stack Clojure framework that is simple, minimal and traditional. I believe that the complexity and overhead of modern web development frameworks have made it difficult for developers to focus on building great applications. Our goal is to provide a tool that allows developers to work efficiently and effectively, without getting bogged down in unnecessary configurations and integrations.
 
