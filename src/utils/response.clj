@@ -12,3 +12,7 @@
   (assoc res :flash
          {:message {:severity severity
                     :message msg}}))
+
+(defn query-params->url [params]
+  (str/join "&"
+            (map (fn [[k v]] (str k "=" v)) params)))
