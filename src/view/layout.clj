@@ -13,7 +13,7 @@
 (defn autocomplete-input [& {:keys [label name value list required]}]
   [:div.mb-3
    [:label.form-label label]
-   [:input {:type "input" :list (str name "list")
+   [:input.form-control {:type "input" :list (str name "list")
             :name name :value value :required required
             :autocomplete "off"}]
    [:datalist {:id (str name "list")}
