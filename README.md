@@ -98,12 +98,12 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 ## Roadmap
 - [x] add simple [pwa](https://web.dev/explore/progressive-web-apps) functinality to make webapps based on borkweb installable
 - [x] Add email interface to write and send emails in an easy manner
+- [x] Add autocomplete component as webcomponent
 - [ ] Add hot reload functionality to cljs part of borkweb (long polling? Server side events?)
 - [ ] Exchange data with frontend components without an api (inline json?)
 - [ ] Add FileUpload Drop Area Component
 - [ ] Add base64 upload code which zips data first with [zip.js](https://gildas-lormeau.github.io/zip.js/)
 - [ ] Add Html5 Modal window
-- [ ] Add autocomplete component as webcomponent
 - [ ] Provide something like a repl for cljs/squint code. Maybe also directly in the browser to trigger functions @borkdude supported the repl option to squint which might be a good idea.
 - [ ] Provide a simple production ready docker-compose config with postgress, caddy (as reverse proxy), and the babashka app. Everything easily scaleable through replicas.
 - [ ] Support [datalevin](https://github.com/juji-io/datalevin) as second database engine with an easy switch via a setting.

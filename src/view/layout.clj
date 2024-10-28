@@ -10,12 +10,28 @@
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
 
+(defn autocomplete-input [& {:keys [label name value list required]}]
+  [:div.mb-3
+   [:label.form-label label]
+   [:input {:type "input" :list (str name "list")
+            :name name :value value :required required
+            :autocomplete "off"}]
+   [:datalist {:id (str name "list")}
+    (map (fn [e] [:option {:value e}]) list)]])
+
 (defn form-input [& {:keys [label type name value required]
+                     :as opts
                      :or {required false}}]
-  (if (= type "textarea")
+  (cond
+    (= type "textarea")
     [:div.mb-3
      [:label.form-label label]
      [:textarea.form-control {:type type :name name :required required} value]]
+
+    (= type "autocomplete")
+    (autocomplete-input opts)
+    
+    :else
     [:div.mb-3
      [:label.form-label label]
      [:input.form-control {:type type :value value :name name :required required}]]))
