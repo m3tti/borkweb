@@ -11,6 +11,7 @@
  ;; if you want postgres
  (require '[pod.babashka.postgresql :as jdbc])
  ;;(require '[pod.babashka.hsqldb :as jdbc])
+ ;;(require '[database.sqlite :as jdbc])
  (require '[next.jdbc :as jdbc]))
 
 ;; Postgress
