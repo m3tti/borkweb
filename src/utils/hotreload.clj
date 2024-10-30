@@ -1,6 +1,7 @@
 (ns utils.hotreload
   (:require
    [config :refer [hotreload?]]
+   [taoensso.timbre :as log]
    [clojure.java.io :as io]
    [clojure.string :as str]))
 
@@ -17,13 +18,29 @@
   [last-timestamp]
   (not= (Long. last-timestamp) (last-modified)))
 
+(defn has-changes
+  ([req]
+   (has-changes req 0))
+  ([req loop-count]
+   (let [last-timestamp (get-in req [:query-params "last-modified"])]
+     (log/debug req)
+     (cond
+       (= 30 loop-count)
+       {:status 200
+        :body (str last-timestamp)}
+       
+       (modified? last-timestamp)
+       {:status 200
+        :body (str (last-modified))}
+
+       :else
+       (do
+         (Thread/sleep 200)
+         (recur req (inc loop-count)))))))
+
 (defn hotreload
   [req]
   (if hotreload?
-    (do 
-      (while (not (modified? (get-in req [:query-params "last-modified"])))
-        (Thread/sleep 200))
-      {:status 200
-       :body (str (last-modified))})
+    (has-changes req)
     {:status 200
      :body "Disabled"}))
