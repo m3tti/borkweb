@@ -2,7 +2,6 @@
   (:require
    [config :refer [hotreload?]]
    [clojure.java.io :as io]
-   [clojure.core.async :as async]
    [clojure.string :as str]))
 
 (defn last-modified
