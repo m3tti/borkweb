@@ -1,5 +1,6 @@
 (ns view.layout
   (:require
+   [config :refer [hotreload?]]
    [cheshire.core :as json]
    [hiccup2.core :as h]
    [utils.session :as s]
@@ -96,7 +97,8 @@
                  :crossorigin "anonymous"}]
          (global-importmap)
          (c/cljs-module "register-sw")
-         (c/cljs-module "hotreload")
+         (when hotreload?
+           (c/cljs-module "hotreload"))
          [:style (h/raw sty/*style*)]]
         [:body {:data-bs-theme "dark" :id "body"}
          (hc/htmc)
