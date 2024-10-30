@@ -96,6 +96,7 @@
                  :crossorigin "anonymous"}]
          (global-importmap)
          (c/cljs-module "register-sw")
+         (c/cljs-module "hotreload")
          [:style (h/raw sty/*style*)]]
         [:body {:data-bs-theme "dark" :id "body"}
          (hc/htmc)

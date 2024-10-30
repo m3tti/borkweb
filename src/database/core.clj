@@ -9,24 +9,24 @@
 
 (runtime/if-bb
  ;; if you want postgres
- (require '[pod.babashka.postgresql :as jdbc])
- ;;(require '[pod.babashka.hsqldb :as jdbc])
+ ;;(require '[pod.babashka.postgresql :as jdbc])
+ (require '[pod.babashka.hsqldb :as jdbc])
  (require '[next.jdbc :as jdbc]))
 
 ;; Postgress
-(def db-opts
-  {:dbtype "postgres"
-   :dbname "jobstop"
-   :user "postgres"
-   :password "test1234"
-   :port 15432})
+;;(def db-opts
+;;  {:dbtype "postgres"
+;;   :dbname "jobstop"
+;;   :user "postgres"
+;;   :password "test1234"
+;;   :port 15432})
 
 ;; Hsql
-;;(def db-opts
-;;  {:dbtype "hsqldb"
-;;   :dbname "./changeme"
-;;   ;; set postgres dialect
-;;   :sql.syntax_pgs true})
+(def db-opts
+  {:dbtype "hsqldb"
+   :dbname "./changeme"
+   ;; set postgres dialect
+   :sql.syntax_pgs true})
 
 (defonce db
   (jdbc/get-connection db-opts))

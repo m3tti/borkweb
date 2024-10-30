@@ -2,6 +2,7 @@
   (:require
    [ruuter.core :as ruuter]
    [static :as static]
+   [utils.hotreload :as hotreload]
    [view.pwa :as pwa]
    [view.index :as index]
    [view.kitchensink :as sink]
@@ -49,5 +50,6 @@
      (get "/login" login/index)
      (post "/login" login/login)
      (get "/logout" login/logout)
-     (get "/profile" profile/index)]
+     (get "/profile" profile/index)
+     (get "/hotreload" hotreload/hotreload)]
     %))

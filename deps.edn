@@ -14,5 +14,6 @@
         cheshire/cheshire {:mvn/version "5.13.0"}
         com.taoensso/timbre {:mvn/version "6.5.0"}
         org.babashka/cli {:mvn/version "0.8.60"}
+        org.clojure/core.async {:mvn/version "1.6.681"}
         ring/ring-anti-forgery {:git/url "https://github.com/m3tti/ring-anti-forgery" :git/sha "4e226df604dca13d5c93be4d4900367a64f5963e"}
         squint/squint {:git/url "https://github.com/squint-cljs/squint" :git/sha "c86d83bd3741a710e2f80fecd413801ddd456e64"}}}
