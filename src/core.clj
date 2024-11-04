@@ -44,7 +44,7 @@
     (if help
       (show-help)
       (do (start-server port)
-          (println (str "You will be assimilated @ https://localhost:" port))
+          (println (str "Happy coding @ http://localhost:" port))
           @(promise)))))
 
 ;;
