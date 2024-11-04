@@ -24,17 +24,21 @@
 (defn index [req]
   (l/layout
    req
-   [:div.container.p-4
-    [:div.row.justify-content-md-center
-     [:div
-      [:h1 "Login"]
-      [:form {:method "post" :action "/login"}
-       (c/csrf-token)
-       [:div.mb-3 
-        [:label.form-label "E-Mail"]
-        [:input.form-control {:type "email" :name "email" :placeholder "E-Mail"}]]
-       [:div.mb-3 
-        [:label.form-label "Password"]
-        [:input.form-control {:type "password" :name "password"}]]
-       [:div.mb-3
-        [:input.btn.btn-primary {:type "submit" :value "Login"}]]]]]]))
+   [:div.flex.justify-center
+    [:div.w-90.w-50-m.w-25-l
+     [:h1 "Login"]
+     [:form {:method "post" :action "/login"}
+      (c/csrf-token)
+      (l/form-input
+       :label "E-Mail"
+       :type "email"
+       :name "email"
+       :placeholder "E-Mail")
+      (l/form-input
+       :label "Password"
+       :type "password"
+       :name "password"
+       :placeholder "Password")
+      
+      [:input.input-reset.bg-moon-gray.near-black.bn.br2.pa2.w-100.ttu.b.hover-bg-mid-gray
+       {:type "submit" :value "Login"}]]]]))

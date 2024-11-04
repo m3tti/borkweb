@@ -25,20 +25,22 @@
 (defn index [req]
   (l/layout
    req
-   [:div.container.p-4
-    [:div.row.justify-content-md-center
-     [:div
-      [:h1 "Register"]
-      [:form {:method "post" :action "/register"}
-       (c/csrf-token)
-       [:div.mb-3 
-        [:label.form-label "E-Mail"]
-        [:input.form-control {:type "email" :name "email" :placeholder "E-Mail"}]]
-       [:div.mb-3 
-        [:label.form-label "Password"]
-        [:input.form-control {:type "password" :name "password1"}]]
-       [:div.mb-4
-        [:label.form-label "Password again"]
-        [:input.form-control {:type "password" :name "password2"}]]
-       [:div.mb-3
-        [:input.btn.btn-primary {:type "submit" :value "Register"}]]]]]]))
+   [:div.flex.justify-center
+    [:div.w-90.w-50-m.w-25-l
+     [:h1 "Register"]
+     [:form {:method "post" :action "/register"}
+      (c/csrf-token)
+      (map l/form-input
+           [{:label "E-Mail"
+             :type "email"
+             :name "email"
+             :placeholder "E-Mail"}
+            {:label "Password"
+             :type "password"
+             :name "password1"
+             :placeholder "Password"}
+            {:label "Password Again"
+             :type "password"
+             :name "password2"
+             :placeholder "Password Again"}])
+      [:input.input-reset.bg-moon-gray.near-black.bn.br2.pa2.w-100.ttu.b.hover-bg-mid-gray {:type "submit" :value "Register"}]]]]))

@@ -1,3 +1,3 @@
 (ns config)
 
-(def hotreload? true)
+(def hotreload? false)
