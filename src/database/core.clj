@@ -110,12 +110,10 @@
     (->
      {:select :* :from table
       :where where}
-     (paginate page)
-     execute!)
+     (paginate page))
     (->
      {:select :* :from table}
-     (paginate page)
-     execute!)))
+     (paginate page))))
 
 ;;
 ;; The initialization function for your database system.
