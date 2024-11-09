@@ -1,6 +1,7 @@
 (ns utils.crud
   (:require
    [taoensso.timbre :as log]
+   [view.core :as c]
    [utils.response :as r]
    [utils.error :as e]))
 
@@ -51,3 +52,30 @@
   (if (get-in req [:params "id"])
     (update! opts)
     (create! opts)))
+
+(defn- table-row
+  [edit-path-fn actions-fn element]
+  [:tr
+   (concat (map #(vec [:td [:a {:href (edit-path-fn element)} %]]) (vals element))
+           [[:td (actions-fn element)]])])
+
+(defn table-view
+  [& {:keys [new-path edit-path-fn actions-fn elements]}]
+  [:div.container
+   [:div.d-flex.justify-content-between
+    [:h1 "Posts"]
+    [:a.btn.btn-primary {:href new-path} "New"]]
+   [:table.table
+    [:thead
+     (concat (map #(vec [:th (name %)]) (-> elements first keys))
+             [[:th "Actions"]])]
+    [:tbody
+     (map #(table-row edit-path-fn actions-fn %) elements)]]])
+
+(defn create-update-form
+  [& {:keys [save-path form-inputs]}]
+  [:form {:action save-path :method "post"}
+   (c/csrf-token)
+   form-inputs
+   [:div.mt-3.d-grid
+    [:input.btn.btn-primary {:type "submit" :value "Save"}]]])
