@@ -131,3 +131,13 @@
          [:script {:src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                    :integrity "sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                    :crossorigin "anonymous"}]]])))
+
+(defn modal [& {:keys [id title content actions]}]
+  [:div.modal.fade {:tabindex -1 :id id}
+   [:div.modal-dialog
+    [:div.modal-content
+     [:div.modal-header
+      [:h5.modal-title title]
+      [:button.btn-close {:type "button" :data-bs-dismiss "modal"}]]
+     [:div.modal-body content]
+     [:div.modal-footer actions]]]])
