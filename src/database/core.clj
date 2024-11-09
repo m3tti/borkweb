@@ -95,6 +95,9 @@
 (defn item-count [table]
   (:count (execute-one! {:select [[:%count.*]] :from table})))
 
+(defn paginate [query page]
+  (merge query {:limit 25 :offset (* (- page 1) 25)}))
+
 ;;
 ;; The initialization function for your database system.
 ;; You can even directly call the commented function to setup
