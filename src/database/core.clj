@@ -103,6 +103,20 @@
   ([query page page-size]
    (merge query {:limit page-size :offset (* (- page 1) page-size)})))
 
+(defn paginate-and-search
+  "Helper to generate search and paginate query for given table"
+  [& {:keys [table where page]}]
+  (if where
+    (->
+     {:select :* :from table
+      :where where}
+     (paginate page)
+     execute!)
+    (->
+     {:select :* :from table}
+     (paginate page)
+     execute!)))
+
 ;;
 ;; The initialization function for your database system.
 ;; You can even directly call the commented function to setup
