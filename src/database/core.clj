@@ -93,10 +93,15 @@
                  :where (where-eq key-map)})))
 
 (defn item-count [table]
+  "Helper function to get count for a given table"
   (:count (execute-one! {:select [[:%count.*]] :from table})))
 
-(defn paginate [query page]
-  (merge query {:limit 25 :offset (* (- page 1) 25)}))
+(defn paginate
+  "Helper function to attach an limit offset paginator to your query"
+  ([query page]
+   (paginate query page 25))
+  ([query page page-size]
+   (merge query {:limit page-size :offset (* (- page 1) page-size)})))
 
 ;;
 ;; The initialization function for your database system.
