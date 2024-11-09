@@ -11,6 +11,28 @@
 
 (def squint-cdn-path "https://cdn.jsdelivr.net/npm/squint-cljs@0.8.114")
 
+(defn paginator [req current-page pages base-url]
+  (let* [q (:query-params req)
+         next (when (not= current-page pages)
+                (str base-url "?"
+                     (r/query-params->url
+                      (merge q {"page" (+ current-page 1)}))))
+         previous (when (not= current-page 1)
+                    (str base-url "?"
+                         (r/query-params->url
+                          (merge q {"page" (- current-page 1)}))))]
+    [:div.d-flex.justify-content-center.mb-2
+     [:div.btn-group
+      [:a.btn.btn-primary
+       (if (nil? previous)
+         {:disabled true}
+         {:href previous}) "Previous"]
+      [:a.btn.btn-outline-primary {:href "#"} current-page " / " pages ]
+      [:a.btn.btn-primary
+       (if (nil? next)
+         {:disabled true}
+         {:href next}) "Next"]]]))
+
 (defn autocomplete-input [& {:keys [label name value list required]}]
   [:div.mb-3
    [:label.form-label label]
