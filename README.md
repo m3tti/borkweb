@@ -110,6 +110,27 @@ Borkweb tries to not stop you in your creativity and implementations. But someti
 ...
 ```
 
+#### New / Edit view
+An example of how to use the `create-update-form` helper that generates a post form with the given inputs. Furthermore the example uses another helper out of the `view/layout.clj` that generates form-inputs with labels given by its type. You can extend it if you like. In this example we have added the trix editor with its own `:type`.
+
+``` clojure
+(crud/create-update-form
+ :save-path "/post"
+ :form-inputs
+ (map l/form-input
+  [{:type "hidden"
+    :name "id"
+    :value (:posts/id post)}
+   {:label "Title"
+    :type "input"
+    :name "title"
+    :value (:posts/title post)}
+   {:label "Content"
+    :type "trix"
+    :name "content"
+    :value (:posts/content post)}]))
+```
+
 #### Table View
 Table View example with extra delete dialog button based on the modal feature present in borkweb.
 ``` clojure
