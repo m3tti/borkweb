@@ -61,6 +61,82 @@ Routing can be done in the `routes.clj` file found in the base folder. There are
 (delete path (fn [req] body))
 ```
 
+### CRUD Helper and Database simplifications
+Borkweb tries to not stop you in your creativity and implementations. But sometimes you just want to get stuff done without thinking up front how to implement stuff and how it should look like. Sometimes you just need some CRUD tool fast out of the door. This is where Borkweb's CRUD helper functions come handy. Currently we have 2 places for some of those helpers 
+* `database/core.clj` where you find common database operations like adding pagination, pagination with a search query or just simple CRUD operations.
+* `utils/crud.clj` here you'll find functions for the view part of your application. Like creating table views with all fields and adding buttons to routes where you create new entries. Furthermore handling of error cases for create, update and delete options.
+
+#### CRUD Examples
+``` clojure
+(require [utils.crud :as crud])
+
+(defn update
+  [req]
+  (crud/update!
+   :req req
+   :update-fn job/insert!
+   :normalized-data (normalize-job-data req)
+   :redirect-path "/job"))
+   
+(defn create
+  [req]
+  (crud/create!
+   :req req
+   :create-fn job/insert!
+   :normalized-data (normalize-job-data req)
+   ;; :does-already-exist? (some-check req) ;; optional
+   :redirect-path "/job"))
+
+(defn create&update
+  [req]
+  (crud/upsert!
+   :req req
+   :update-fn job/update!
+   :create-fn job/insert!
+   :normalized-data (normalize-job-data req)
+   ;; :does-already-exist? (some-check req) ;; optional
+   :redirect-path "/job"))
+
+(defn delete [req]
+  (crud/delete!
+   :req req
+   :delete-fn job/delete!
+   :redirect-path "/job"))
+
+;; routes.clj
+...
+(post "/save" create&update)
+(post "/delete" delete)
+...
+```
+
+#### Table View
+Table View example with extra delete dialog button based on the modal feature present in borkweb.
+``` clojure
+(crud/table-view
+ :new-path "/post/new"
+ :elements (post/all-paged q page)
+ :edit-path-fn #(str "/post/" (:posts/id %) "/edit")
+ :actions-fn
+ (fn [e]
+  [:div
+   [:a.text-danger {:href "#"
+                    :data-bs-toggle "modal"
+                    :data-bs-target (str "#" (:posts/id e) "-delete")} "Delete"]
+   (l/modal
+    :id (str (:posts/id e) "-delete")
+    :title "Delete Post"
+    :content [:div "Delete Post really?"]
+    :actions
+    [:div
+     [:button {:type "button" :class "btn btn-secondary" :data-bs-dismiss "modal"} "Close"]
+     [:form.ms-2.d-inline {:action "/post/delete" :method "post"}
+      (c/csrf-token)
+      [:input {:type "hidden" :name "id" :value (:posts/id e)}]
+      [:input.btn.btn-danger {:type "submit" :data-bs-dismiss "modal" :value "Delete"}]]])])
+```
+
+
 ### CLJS
 borkweb provides already everything you need to get started with cljs no need for any bundler or anything else.
 Get to `resources/cljs` drop your cljs code that is squint compliant and you are good to go. borkweb allready includes some examples for preact and preact web components. There are helper functions to compile cljs code in your hiccup templates. You can find them in `view/components.clj`
