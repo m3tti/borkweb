@@ -113,27 +113,29 @@ Borkweb tries to not stop you in your creativity and implementations. But someti
 #### Table View
 Table View example with extra delete dialog button based on the modal feature present in borkweb.
 ``` clojure
-(crud/table-view
- :new-path "/post/new"
- :elements (post/all-paged q page)
- :edit-path-fn #(str "/post/" (:posts/id %) "/edit")
- :actions-fn
- (fn [e]
-  [:div
-   [:a.text-danger {:href "#"
-                    :data-bs-toggle "modal"
-                    :data-bs-target (str "#" (:posts/id e) "-delete")} "Delete"]
-   (l/modal
-    :id (str (:posts/id e) "-delete")
-    :title "Delete Post"
-    :content [:div "Delete Post really?"]
-    :actions
-    [:div
-     [:button {:type "button" :class "btn btn-secondary" :data-bs-dismiss "modal"} "Close"]
-     [:form.ms-2.d-inline {:action "/post/delete" :method "post"}
-      (c/csrf-token)
-      [:input {:type "hidden" :name "id" :value (:posts/id e)}]
-      [:input.btn.btn-danger {:type "submit" :data-bs-dismiss "modal" :value "Delete"}]]])])
+[:div 
+ (crud/table-view
+  :new-path "/post/new"
+  :elements (post/all-paged q page)
+  :edit-path-fn #(str "/post/" (:posts/id %) "/edit")
+  :actions-fn
+  (fn [e]
+   [:div
+    [:a.text-danger {:href "#"
+                     :data-bs-toggle "modal"
+                     :data-bs-target (str "#" (:posts/id e) "-delete")} "Delete"]
+    (l/modal
+     :id (str (:posts/id e) "-delete")
+     :title "Delete Post"
+     :content [:div "Delete Post really?"]
+     :actions
+     [:div
+      [:button {:type "button" :class "btn btn-secondary" :data-bs-dismiss "modal"} "Close"]
+      [:form.ms-2.d-inline {:action "/post/delete" :method "post"}
+       (c/csrf-token)
+       [:input {:type "hidden" :name "id" :value (:posts/id e)}]
+       [:input.btn.btn-danger {:type "submit" :data-bs-dismiss "modal" :value "Delete"}]]])]))
+ (l/paginator req page (post/item-count) "/post")]
 ```
 
 
