@@ -25,6 +25,7 @@
  {:appenders {:spit (appenders/spit-appender {:fname "./application.log"})}})
 
 (defn start-server [port]
+  (log/info "Server starting up!")
   (reset! server
           (srv/run-server
            (->
