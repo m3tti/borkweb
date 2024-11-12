@@ -1,19 +1,12 @@
 (ns middleware.auth
   (:require
+   [config :as config]
    [utils.response :as r]
    [clojure.string :as str]
    [utils.session :as session]))
 
-
-;;
-;; Expand the restricted page if you want to hide pages behind the
-;; login.
-;;
-(def restricted-pages
-  ["/profile"])
-
 (defn path-restricted? [path]
-  (some? (first (filter #(str/includes? path %) restricted-pages))))
+  (some? (first (filter #(str/includes? path %) config/restricted-pages))))
 
 (comment (path-restricted? "/prof"))
 

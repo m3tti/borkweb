@@ -1,5 +1,6 @@
 (ns database.core
   (:require
+   [config :as config]
    [utils.runtime :as runtime]
    [clojure.string :as str]
    [clojure.edn :as edn]
@@ -13,23 +14,8 @@
  (require '[pod.babashka.hsqldb :as jdbc])
  (require '[next.jdbc :as jdbc]))
 
-;; Postgress
-;;(def db-opts
-;;  {:dbtype "postgres"
-;;   :dbname "jobstop"
-;;   :user "postgres"
-;;   :password "test1234"
-;;   :port 15432})
-
-;; Hsql
-(def db-opts
-  {:dbtype "hsqldb"
-   :dbname "./changeme"
-   ;; set postgres dialect
-   :sql.syntax_pgs true})
-
 (defonce db
-  (jdbc/get-connection db-opts))
+  (jdbc/get-connection config/db-opts))
 
 (defn build-key [key]
   (if (namespace key)
