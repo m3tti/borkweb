@@ -9,4 +9,5 @@
          filename (first file-data)
          b64 (second file-data)]
     {:name filename
+     :ext (last (str/split filename #"\."))
      :file (encode/decode->file b64 (str path filename))}))
