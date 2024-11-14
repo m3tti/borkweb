@@ -3,6 +3,8 @@
    [ruuter.core :as ruuter]
    [static :as static]
    [utils.hotreload :as hotreload]
+   [utils.session :as session]
+   [utils.response :as r]
    [view.pwa :as pwa]
    [view.index :as index]
    [view.kitchensink :as sink]
@@ -34,6 +36,12 @@
 
 (defn option [path response-fn]
   (route path :option response-fn))
+
+(defn restricted [response-fn]
+  (fn [req]
+    (if (session/current-user req)
+      (response-fn req)
+      (r/redirect (str "/login?url=" (:uri req))))))
 
 ;;
 ;; Extend your routes in here!!!

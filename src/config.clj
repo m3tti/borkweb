@@ -17,7 +17,4 @@
 ;   ;; set postgres dialect
 ;   :sql.syntax_pgs true})
 
-(def restricted-pages
-  ["/profile"
-   "/job"
-   "/admin"])
+(def base-url "http://localhost:8080")

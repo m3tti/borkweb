@@ -2,7 +2,6 @@
   (:require
    [babashka.cli :as cli]
    [routes :as ro]
-   [middleware.auth :as auth]
    [ring.middleware.anti-forgery :as af]
    [ring.middleware.session :as s]
    [ring.middleware.params :as p]
@@ -30,7 +29,6 @@
           (srv/run-server
            (->
             #'ro/routes
-            auth/wrap-auth
             (af/wrap-anti-forgery {:anti-forgery true
                                    :token-expiry (* 60 60 24)})
             f/wrap-flash
