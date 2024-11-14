@@ -54,6 +54,13 @@
 
     (= type "autocomplete")
     (autocomplete-input opts)
+
+    (= type "base64-upload")
+    [:div.mb-3
+     [:label.form-label label]
+     (c/cljs-module "base64-upload")
+     [:input.form-control {:type "file" :required required :onchange (str "base64_upload(\"" id "\", this)")}]
+     [:input {:type "hidden" :name name :id (if id id label)}]]
     
     :else
     [:div.mb-3
