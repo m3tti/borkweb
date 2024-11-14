@@ -159,6 +159,30 @@ Table View example with extra delete dialog button based on the modal feature pr
  (l/paginator req page (post/item-count) "/post")]
 ```
 
+### FileUpload
+
+``` clojure
+(require [view.layout :as l])
+(require [utils.encode :as encode])
+
+(defn some-handler
+  [req]
+  (l/layout
+   req
+   [:form {:action "/some/action" :method "post"}
+    (l/form-input
+     :id "file-upload" ;; is mandatory
+     :label "My Upload"
+     :name "file")
+    [:input {:type "submit" :value "save"}]]))
+    
+(defn some-post-handler
+  [req]
+  (let [file (encode/decode->file (get-in req [:params "file"] "/some/file.pdf"))]
+    ;; do something
+    ))
+```
+
 
 ### CLJS
 borkweb provides already everything you need to get started with cljs no need for any bundler or anything else.
@@ -199,9 +223,10 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
 - [x] Add email interface to write and send emails in an easy manner
 - [x] Add autocomplete component as webcomponent
 - [x] Add hot reload functionality to cljs part of borkweb (long polling? Server side events?)
+- [x] Add base64 upload code 
 - [ ] Exchange data with frontend components without an api (inline json?)
 - [ ] Add FileUpload Drop Area Component
-- [ ] Add base64 upload code which zips data first with [zip.js](https://gildas-lormeau.github.io/zip.js/)
+- [ ] Zip base64 data with [zip.js](https://gildas-lormeau.github.io/zip.js/)
 - [ ] Add Html5 Modal window
 - [ ] Provide something like a repl for cljs/squint code. Maybe also directly in the browser to trigger functions @borkdude supported the repl option to squint which might be a good idea.
 - [ ] Provide a simple production ready docker-compose config with postgress, caddy (as reverse proxy), and the babashka app. Everything easily scaleable through replicas.

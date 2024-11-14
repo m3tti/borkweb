@@ -1,4 +1,6 @@
 (ns utils.encode
+  (:require
+   [clojure.java.io :as io])
   (:import 
    (java.util Base64)))
 
@@ -19,3 +21,12 @@
    b64-encode
    b64-decode
    String.))
+
+(defn decode->file
+  "Decode base64 as file"
+  [b64 filename]
+  (let [file (io/file filename)]
+    (io/copy
+     (b64-decode b64)
+     file)
+    file))
