@@ -13,7 +13,7 @@
 ;; Hsql
 (def db-opts
   {:dbtype "hsqldb"
-   :dbname "./staryou"
+   :dbname "./testdb"
    ;; set postgres dialect
    :sql.syntax_pgs true})
 
