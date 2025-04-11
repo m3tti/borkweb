@@ -43,7 +43,7 @@
    [:datalist {:id (str name "list")}
     (map (fn [e] [:option {:value e}]) list)]])
 
-(defn form-input [& {:keys [label type name value required]
+(defn form-input [& {:keys [id label type name value required]
                      :as opts
                      :or {required false}}]
   (cond
@@ -61,7 +61,7 @@
      (c/cljs-module "base64-upload")
      [:input.form-control {:type "file" :required required :onchange (str "base64_upload(\"" id "\", this)")}]
      [:input {:type "hidden" :name name :id (if id id label)}]]
-    
+
     :else
     [:div.mb-3
      [:label.form-label label]
@@ -74,7 +74,7 @@
 (defn global-importmap []
   [:script {:type "importmap"}
    (h/raw
-    (json/encode 
+    (json/encode
      {:imports
       {:squint-cljs/core.js (str squint-cdn-path "/src/squint/core.js")
        :squint-cljs/string.js (str squint-cdn-path "/src/squint/string.js")
@@ -93,7 +93,7 @@
        (when (not user)
          [:ul.navbar-nav
           [:li.nav-item
-           [:a.nav-link {:href "/login"} "Login"]]          
+           [:a.nav-link {:href "/login"} "Login"]]
           [:li.nav-item
            [:a.nav-link {:href "/register"} "Register"]]
           [:li.nav-item
@@ -134,7 +134,7 @@
          (hc/htmc)
          (navbar req)
          (alert req)
-         body                 
+         body
          [:script {:src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                    :integrity "sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                    :crossorigin "anonymous"}]]])))

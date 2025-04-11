@@ -23,7 +23,7 @@
     (str (name key))))
 
 (defn to-lower-case-keys [key-map]
-  (update-keys key-map #(->                        
+  (update-keys key-map #(->
                          (build-key %)
                          str/lower-case
                          keyword)))
@@ -52,7 +52,7 @@
                                [key-map])})))
 
 (defn where-eq [key-map]
-  (concat [:and] 
+  (concat [:and]
           (mapv (fn [[k v]] [:= k v]) key-map)))
 
 (defn delete!
@@ -108,7 +108,7 @@
 ;;
 (defn initialize-db []
   (jdbc/with-transaction [tx db]
-    (dorun 
+    (dorun
      (for [q (edn/read-string (slurp "initsql.edn"))]
        (jdbc/execute-one! tx (sql/format q))))))
 
