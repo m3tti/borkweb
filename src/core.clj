@@ -6,6 +6,7 @@
    [ring.middleware.session :as s]
    [ring.middleware.params :as p]
    [ring.middleware.flash :as f]
+   [ring-multipart-nodeps.core :as mp]
    [taoensso.timbre :as log]
    [taoensso.timbre.appenders.core :as appenders]
    [org.httpkit.server :as srv]))
@@ -32,6 +33,12 @@
             (af/wrap-anti-forgery {:anti-forgery true
                                    :token-expiry (* 60 60 24)})
             f/wrap-flash
+            (mp/wrap-multipart-params
+             {:store (mp/byte-array-store)
+              :encoding "UTF-8"
+              :fallback-encoding "UTF-8"
+              :progress-fn (fn [request bytes-read content-length item-count]
+                             (println "Processed" bytes-read "of" content-length "bytes"))})
             s/wrap-session
             p/wrap-params)
            {:port port
@@ -49,5 +56,5 @@
 ;;
 ;; Repl functions. To startup and stop the system
 ;;
-(comment (start-server 8080))
+(comment (start-server 8081))
 (comment (@server))

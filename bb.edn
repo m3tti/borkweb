@@ -4,6 +4,7 @@
         ring/ring {:mvn/version "1.14.1"}
         gaka/gaka {:mvn/version "0.3.0"}
         ring/ring-anti-forgery {:mvn/version "1.4.0"}
+        org.clojars.frozenlock/ring-multipart-nodeps {:mvn/version "1.2.1"}
         ;; v0.8.144
         squint/squint {:git/url "https://github.com/squint-cljs/squint"
                        :git/sha "f008c6d898a5c0fb04c7a6a2e7ddcdd8bfc2d498"}}

@@ -7,6 +7,7 @@
         ;; Development database
         org.hsqldb/hsqldb {:mvn/version "2.7.4"}
         com.draines/postal {:mvn/version "2.0.5"}
+        org.clojars.frozenlock/ring-multipart-nodeps {:mvn/version "1.2.1"}
         ring/ring {:mvn/version "1.14.1"}
         gaka/gaka {:mvn/version "0.3.0"}
         hiccup/hiccup {:mvn/version "2.0.0-RC5"}
