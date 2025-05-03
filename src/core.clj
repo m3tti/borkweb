@@ -56,5 +56,6 @@
 ;;
 ;; Repl functions. To startup and stop the system
 ;;
-(comment (start-server 8081))
-(comment (@server))
+(comment
+  (start-server 8081)
+  (@server))

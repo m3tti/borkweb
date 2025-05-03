@@ -10,7 +10,8 @@
    [view.kitchensink :as sink]
    [view.login :as login]
    [view.profile :as profile]
-   [view.register :as register]))
+   [view.register :as register]
+   [api.core :as api]))
 
 (defn route [path method response-fn]
   {:path path
@@ -47,7 +48,7 @@
 ;; Extend your routes in here!!!
 ;;
 (def routes
-  #(ruuter/route 
+  #(ruuter/route
     [(get "/manifest.json" pwa/manifest)
      (get "/sw.js" pwa/sw)
      (get "/static/:filename" static/serve-static)
@@ -59,5 +60,7 @@
      (post "/login" login/login)
      (get "/logout" login/logout)
      (get "/profile" profile/index)
-     (get "/hotreload" hotreload/hotreload)]
+     (get "/hotreload" hotreload/hotreload)
+     ;; APIs
+     (get "/api/ping" api/ping)]
     %))

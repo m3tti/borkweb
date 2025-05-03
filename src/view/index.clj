@@ -13,7 +13,7 @@
      req
      [:div.container
       [:h1 "My Service"]
-      [:table     
+      [:table
        [:tr [:td "User"]
         [:td (get user
                   :users/email
