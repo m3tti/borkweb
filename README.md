@@ -23,7 +23,7 @@ One of the key benefits of Borkweb is that it requires minimal overhead. You don
 
 
 ## Contributing
-Borkweb is an open-source project, and I welcome contributions from anyone who is interested in helping to make it better. If you have an idea for a feature or a bug fix, please open an issue or submit a pull request. 
+Borkweb is an open-source project, and I welcome contributions from anyone who is interested in helping to make it better. If you have an idea for a feature or a bug fix, please open an issue or submit a pull request.
 
 ## Dependencies
 - [ruuter](https://github.com/askonomm/ruuter)
@@ -35,6 +35,7 @@ Borkweb is an open-source project, and I welcome contributions from anyone who i
 - [ring](https://github.com/ring-clojure/ring)
 - [honeysql](https://github.com/seancorfield/honeysql)
 - [gaka](https://github.com/cdaddr/gaka)
+- [etaoin](https://github.com/clj-commons/etaoin)
 
 ### Frontend third party
 - [preact](preactjs.com)
@@ -62,7 +63,7 @@ Routing can be done in the `routes.clj` file found in the base folder. There are
 ```
 
 ### CRUD Helper and Database simplifications
-Borkweb tries to not stop you in your creativity and implementations. But sometimes you just want to get stuff done without thinking up front how to implement stuff and how it should look like. Sometimes you just need some CRUD tool fast out of the door. This is where Borkweb's CRUD helper functions come handy. Currently we have 2 places for some of those helpers 
+Borkweb tries to not stop you in your creativity and implementations. But sometimes you just want to get stuff done without thinking up front how to implement stuff and how it should look like. Sometimes you just need some CRUD tool fast out of the door. This is where Borkweb's CRUD helper functions come handy. Currently we have 2 places for some of those helpers
 * `database/core.clj` where you find common database operations like adding pagination, pagination with a search query or just simple CRUD operations.
 * `utils/crud.clj` here you'll find functions for the view part of your application. Like creating table views with all fields and adding buttons to routes where you create new entries. Furthermore handling of error cases for create, update and delete options.
 
@@ -77,7 +78,7 @@ Borkweb tries to not stop you in your creativity and implementations. But someti
    :update-fn job/insert!
    :normalized-data (normalize-job-data req)
    :redirect-path "/job"))
-   
+
 (defn create
   [req]
   (crud/create!
@@ -134,7 +135,7 @@ An example of how to use the `create-update-form` helper that generates a post f
 #### Table View
 Table View example with extra delete dialog button based on the modal feature present in borkweb.
 ``` clojure
-[:div 
+[:div
  (crud/table-view
   :new-path "/post/new"
   :elements (post/all-paged q page)
@@ -175,7 +176,7 @@ Table View example with extra delete dialog button based on the modal feature pr
      :label "My Upload"
      :name "file")
     [:input {:type "submit" :value "save"}]]))
-    
+
 (defn some-post-handler
   [req]
   (let [file (encode/decode->file (get-in req [:params "file"] "/some/file.pdf"))]
@@ -218,18 +219,57 @@ Get to `resources/cljs` drop your cljs code that is squint compliant and you are
   (c/cljs-module "counter"))
 ```
 
+## Testing
+One common task is to test your software. Therefore borkweb has its "custom" facility available.
+It is like all parts of borkweb completly related to clojure / babashka. We leverage clojure.test with a etoin (for e2e tests) and httpkit.clint (for api tests) and default clojure.test for unit test.
+Due to the fact that everything runs in clojure.test you can use all the tests you like to enhance your clojure test reporting and even run your test without the need of relying on other tools like playwright or cypress.
+
+But borkweb alse features some helper to make your testing experience a little bit more convenient. All tests currently reside in the `/tests` folder in the project root and are included by default.
+
+You can run the tests by using the `bb run test:e2e` or `bb run test:api`
+
+### e2e Testing
+First of we are looking at the e2e part. Borkweb uses [etaoin](https://github.com/clj-commons/etaoin) as its browser driver. Etaoin supports all default browsers you would expect.
+We use `deftest` to define our test cases. You don't have to setup any ceremony or stuff just write your tests. The driver is also initialized for you. By default we use chrome but you can change it with a simple change in the `warmup` function in the `e2e.main` namespace
+
+``` clojure
+(defn warmup []
+  (reset! driver (e/chrome))) ;; change chrome to firefox or all other possibilities provided by etaoin
+```
+
+A typical test would look something like that but you can change and mix and match as you like. Borkweb gives you still the flexibility to change the framework to your wishes.
+
+``` clojure
+(deftest index-shown
+    (e/go @driver config/base-url)
+    (is (= (e/get-title @driver) config/base-url)))
+```
+Borkweb uses `use-fixtures` to make sure that the `driver` atom is filled with the correct driver for your test. So no need to start the driver or even close it.
+
+
+### api Testing
+Api tests can be found under `/tests/api/main.clj`. For api testing borkweb uses httpkit.client and a small helper function to make your life easier with rest apis.
+A common test would look like this.
+
+``` clojure
+(deftest ping-endpoint
+  (let [resp (request-json :get (str config/base-url "/api/ping"))]
+    (is (= (:json resp) {"hello" "world"})))
+```
+
 ## Roadmap
 - [x] add simple [pwa](https://web.dev/explore/progressive-web-apps) functinality to make webapps based on borkweb installable
 - [x] Add email interface to write and send emails in an easy manner
 - [x] Add autocomplete component as webcomponent
 - [x] Add hot reload functionality to cljs part of borkweb (long polling? Server side events?)
-- [x] Add base64 upload code 
+- [x] Add base64 upload code
+- [x] Add e2e, api, unit testing
 - [ ] Exchange data with frontend components without an api (inline json?)
 - [ ] Add FileUpload Drop Area Component
 - [ ] Zip base64 data with [zip.js](https://gildas-lormeau.github.io/zip.js/)
 - [ ] Add Html5 Modal window
 - [ ] Provide something like a repl for cljs/squint code. Maybe also directly in the browser to trigger functions @borkdude supported the repl option to squint which might be a good idea.
-- [ ] Provide a simple production ready docker-compose config with postgress, caddy (as reverse proxy), and the babashka app. Everything easily scaleable through replicas.
+- [x] Provide a simple production ready docker-compose config with postgress, caddy (as reverse proxy), and the babashka app. Everything easily scaleable through replicas.
 - [ ] Support [datalevin](https://github.com/juji-io/datalevin) as second database engine with an easy switch via a setting.
 - [ ] make a port to common lisp one day :tada:
 
