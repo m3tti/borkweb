@@ -16,4 +16,17 @@
         ;; Development Database
         org.babashka/hsqldb {:version "0.1.4"}
         tzzh/mail {:version "0.0.3"}
-        }}
+        }
+
+ :tasks {test:e2e
+         {:requires ([core :as core]
+                     [e2e.main :as e2e]
+                     [clojure.test :refer [run-tests]])
+          :task (do (core/start-server 8080)
+                    (run-tests 'e2e.main))}
+         test:api
+         {:requires ([core :as core]
+                     [api.main :as api]
+                     [clojure.test :refer [run-tests]])
+          :task (do (core/start-server 8080)
+                    (run-tests 'api.main))}}}
